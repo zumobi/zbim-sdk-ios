@@ -23,11 +23,7 @@
 		B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */; };
 		B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */; };
 		B7AE85A41A82A35B00F02F23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85901A82A35B00F02F23 /* main.m */; };
-		B7AE85AC1A82ABF200F02F23 /* cognito-identity-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */; };
-		B7AE85AD1A82ABF200F02F23 /* css-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */; };
 		B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A91A82ABF200F02F23 /* pubkey.der */; };
-		B7AE85AF1A82ABF200F02F23 /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */; };
-		B7AE85B01A82ABF200F02F23 /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */; };
 		B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */; };
 /* End PBXBuildFile section */
 
@@ -57,11 +53,7 @@
 		B7AE85901A82A35B00F02F23 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AE85911A82A35B00F02F23 /* ZBiMSampleApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZBiMSampleApp-Info.plist"; sourceTree = "<group>"; };
 		B7AE85921A82A35B00F02F23 /* ZBiMSampleApp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZBiMSampleApp-Prefix.pch"; sourceTree = "<group>"; };
-		B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cognito-identity-2014-06-30.json"; sourceTree = "<group>"; };
-		B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "css-2014-06-30.json"; sourceTree = "<group>"; };
 		B7AE85A91A82ABF200F02F23 /* pubkey.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = pubkey.der; sourceTree = "<group>"; };
-		B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sqs-2012-11-05.json"; sourceTree = "<group>"; };
-		B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
 		B7AE85B11A82AC0C00F02F23 /* libPods-ZBiMSampleApp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZBiMSampleApp.a"; path = "Pods/build/Debug-iphoneos/libPods-ZBiMSampleApp.a"; sourceTree = "<group>"; };
 		B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zbimconfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,11 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */,
-				B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */,
-				B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */,
 				B7AE85A91A82ABF200F02F23 /* pubkey.der */,
-				B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */,
-				B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -232,16 +220,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7AE85B01A82ABF200F02F23 /* sts-2011-06-15.json in Resources */,
 				B7AE85A01A82A35B00F02F23 /* Default.png in Resources */,
 				B7AE85A11A82A35B00F02F23 /* Default@2x.png in Resources */,
-				B7AE85AD1A82ABF200F02F23 /* css-2014-06-30.json in Resources */,
-				B7AE85AC1A82ABF200F02F23 /* cognito-identity-2014-06-30.json in Resources */,
 				B7AE85991A82A35B00F02F23 /* ZBiMViewController.xib in Resources */,
 				B7AE85981A82A35B00F02F23 /* InfoPlist.strings in Resources */,
 				B7AE859F1A82A35B00F02F23 /* Default-568h@2x.png in Resources */,
 				B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */,
-				B7AE85AF1A82ABF200F02F23 /* sqs-2012-11-05.json in Resources */,
 				B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */,
 				B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */,
 				B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */,
