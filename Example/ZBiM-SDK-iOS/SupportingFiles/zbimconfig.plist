@@ -9,11 +9,11 @@
 	<key>metricsReportingQueueId</key>
 	<string>zumobi</string>
 	<key>poolId</key>
-	<string>us-east-1:8cf6eb75-e746-4483-96ba-d7c372ff8d9d</string>
+	<string>dXMtZWFzdC0xOjhjZjZlYjc1LWU3NDYtNDQ4My05NmJhLWQ3YzM3MmZmOGQ5ZA==</string>
 	<key>roleA</key>
-	<string>arn:aws:iam::483274222761:role/Cognito_zumobiAuth_Role</string>
+	<string>YXJuOmF3czppYW06OjQ4MzI3NDIyMjc2MTpyb2xlL0NvZ25pdG9fenVtb2JpQXV0aF9Sb2xl</string>
 	<key>roleUA</key>
-	<string>arn:aws:iam::483274222761:role/Cognito_zumobiUnauth_Role</string>
+	<string>YXJuOmF3czppYW06OjQ4MzI3NDIyMjc2MTpyb2xlL0NvZ25pdG9fenVtb2JpVW5hdXRoX1JvbGU=</string>
 	<key>accountID</key>
 	<string>483274222761</string>
 </dict>
