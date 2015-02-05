@@ -10,6 +10,10 @@
 	<string>zumobi</string>
 	<key>poolId</key>
 	<string>us-east-1:8cf6eb75-e746-4483-96ba-d7c372ff8d9d</string>
+	<key>roleA</key>
+	<string>arn:aws:iam::483274222761:role/Cognito_zumobiAuth_Role</string>
+	<key>roleUA</key>
+	<string>arn:aws:iam::483274222761:role/Cognito_zumobiUnauth_Role</string>
 	<key>accountID</key>
 	<string>483274222761</string>
 </dict>
