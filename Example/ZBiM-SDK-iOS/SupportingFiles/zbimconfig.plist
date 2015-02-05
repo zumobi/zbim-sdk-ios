@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>appID</key>
+	<string>4afdf695-b143-4ea0-8741-c3cb8d15e649</string>
+	<key>dbServiceUrl</key>
+	<string>https://zpe.zumobi.net/apps/4afdf695-b143-4ea0-8741-c3cb8d15e649/1-0-0/db_url</string>
+	<key>metricsReportingQueueId</key>
+	<string>zumobi</string>
+	<key>poolId</key>
+	<string>us-east-1:8cf6eb75-e746-4483-96ba-d7c372ff8d9d</string>
+	<key>accountID</key>
+	<string>483274222761</string>
+</dict>
+</plist>

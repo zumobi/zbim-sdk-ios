@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
+		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
+		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		B7AE85931A82A35B00F02F23 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85761A82A35B00F02F23 /* UIView+Toast.m */; };
+		B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */; };
+		B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */; };
+		B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */; };
+		B7AE85971A82A35B00F02F23 /* ZBiMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */; };
+		B7AE85981A82A35B00F02F23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85801A82A35B00F02F23 /* InfoPlist.strings */; };
+		B7AE85991A82A35B00F02F23 /* ZBiMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */; };
+		B7AE859F1A82A35B00F02F23 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */; };
+		B7AE85A01A82A35B00F02F23 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858C1A82A35B00F02F23 /* Default.png */; };
+		B7AE85A11A82A35B00F02F23 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858D1A82A35B00F02F23 /* Default@2x.png */; };
+		B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */; };
+		B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */; };
+		B7AE85A41A82A35B00F02F23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85901A82A35B00F02F23 /* main.m */; };
+		B7AE85AC1A82ABF200F02F23 /* cognito-identity-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */; };
+		B7AE85AD1A82ABF200F02F23 /* css-2014-06-30.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */; };
+		B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A91A82ABF200F02F23 /* pubkey.der */; };
+		B7AE85AF1A82ABF200F02F23 /* sqs-2012-11-05.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */; };
+		B7AE85B01A82ABF200F02F23 /* sts-2011-06-15.json in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */; };
+		B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6003F58A195388D20070C39A /* ZBiMSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBiMSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B7AE85751A82A35B00F02F23 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		B7AE85761A82A35B00F02F23 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMAppDelegate.h; sourceTree = "<group>"; };
+		B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMAppDelegate.m; sourceTree = "<group>"; };
+		B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMContentHubContainerViewController.h; sourceTree = "<group>"; };
+		B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMContentHubContainerViewController.m; sourceTree = "<group>"; };
+		B7AE857B1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMCreateNewUserViewController.h; sourceTree = "<group>"; };
+		B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMCreateNewUserViewController.m; sourceTree = "<group>"; };
+		B7AE857D1A82A35B00F02F23 /* ZBiMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMViewController.h; sourceTree = "<group>"; };
+		B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMViewController.m; sourceTree = "<group>"; };
+		B7AE85811A82A35B00F02F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		B7AE85831A82A35B00F02F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ZBiMViewController.xib; sourceTree = "<group>"; };
+		B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B7AE858C1A82A35B00F02F23 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B7AE858D1A82A35B00F02F23 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZBiMContentHubContainerViewController.xib; sourceTree = "<group>"; };
+		B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZBiMCreateNewUserViewController.xib; sourceTree = "<group>"; };
+		B7AE85901A82A35B00F02F23 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B7AE85911A82A35B00F02F23 /* ZBiMSampleApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZBiMSampleApp-Info.plist"; sourceTree = "<group>"; };
+		B7AE85921A82A35B00F02F23 /* ZBiMSampleApp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZBiMSampleApp-Prefix.pch"; sourceTree = "<group>"; };
+		B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cognito-identity-2014-06-30.json"; sourceTree = "<group>"; };
+		B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "css-2014-06-30.json"; sourceTree = "<group>"; };
+		B7AE85A91A82ABF200F02F23 /* pubkey.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = pubkey.der; sourceTree = "<group>"; };
+		B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sqs-2012-11-05.json"; sourceTree = "<group>"; };
+		B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sts-2011-06-15.json"; sourceTree = "<group>"; };
+		B7AE85B11A82AC0C00F02F23 /* libPods-ZBiMSampleApp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZBiMSampleApp.a"; path = "Pods/build/Debug-iphoneos/libPods-ZBiMSampleApp.a"; sourceTree = "<group>"; };
+		B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zbimconfig.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6003F587195388D20070C39A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
+				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
+				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6003F581195388D10070C39A = {
+			isa = PBXGroup;
+			children = (
+				6003F593195388D20070C39A /* ZBiM-SDK-iOS */,
+				6003F58C195388D20070C39A /* Frameworks */,
+				6003F58B195388D20070C39A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6003F58B195388D20070C39A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6003F58A195388D20070C39A /* ZBiMSampleApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6003F58C195388D20070C39A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE85B11A82AC0C00F02F23 /* libPods-ZBiMSampleApp.a */,
+				6003F58D195388D20070C39A /* Foundation.framework */,
+				6003F58F195388D20070C39A /* CoreGraphics.framework */,
+				6003F591195388D20070C39A /* UIKit.framework */,
+				6003F5AF195388D20070C39A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6003F593195388D20070C39A /* ZBiM-SDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE858A1A82A35B00F02F23 /* Assets */,
+				B7AE85741A82A35B00F02F23 /* Classes */,
+				B7AE857F1A82A35B00F02F23 /* en.lproj */,
+				B7AE85901A82A35B00F02F23 /* main.m */,
+				B7AE85A61A82ABF200F02F23 /* SupportingFiles */,
+				B7AE85911A82A35B00F02F23 /* ZBiMSampleApp-Info.plist */,
+				B7AE85921A82A35B00F02F23 /* ZBiMSampleApp-Prefix.pch */,
+			);
+			path = "ZBiM-SDK-iOS";
+			sourceTree = "<group>";
+		};
+		B7AE85741A82A35B00F02F23 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE85751A82A35B00F02F23 /* UIView+Toast.h */,
+				B7AE85761A82A35B00F02F23 /* UIView+Toast.m */,
+				B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */,
+				B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */,
+				B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */,
+				B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */,
+				B7AE857B1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.h */,
+				B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */,
+				B7AE857D1A82A35B00F02F23 /* ZBiMViewController.h */,
+				B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B7AE857F1A82A35B00F02F23 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE85801A82A35B00F02F23 /* InfoPlist.strings */,
+				B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		B7AE858A1A82A35B00F02F23 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */,
+				B7AE858C1A82A35B00F02F23 /* Default.png */,
+				B7AE858D1A82A35B00F02F23 /* Default@2x.png */,
+				B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */,
+				B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B7AE85A61A82ABF200F02F23 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */,
+				B7AE85A71A82ABF200F02F23 /* cognito-identity-2014-06-30.json */,
+				B7AE85A81A82ABF200F02F23 /* css-2014-06-30.json */,
+				B7AE85A91A82ABF200F02F23 /* pubkey.der */,
+				B7AE85AA1A82ABF200F02F23 /* sqs-2012-11-05.json */,
+				B7AE85AB1A82ABF200F02F23 /* sts-2011-06-15.json */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6003F589195388D20070C39A /* ZBiMSampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ZBiMSampleApp" */;
+			buildPhases = (
+				6003F586195388D20070C39A /* Sources */,
+				6003F587195388D20070C39A /* Frameworks */,
+				6003F588195388D20070C39A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZBiMSampleApp;
+			productName = "ZBiM-SDK-iOS";
+			productReference = 6003F58A195388D20070C39A /* ZBiMSampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6003F582195388D10070C39A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ZBI;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Daniel Clark";
+				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = RJQEDJVABA;
+					};
+				};
+			};
+			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "ZBiM-SDK-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6003F581195388D10070C39A;
+			productRefGroup = 6003F58B195388D20070C39A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6003F589195388D20070C39A /* ZBiMSampleApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6003F588195388D20070C39A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7AE85B01A82ABF200F02F23 /* sts-2011-06-15.json in Resources */,
+				B7AE85A01A82A35B00F02F23 /* Default.png in Resources */,
+				B7AE85A11A82A35B00F02F23 /* Default@2x.png in Resources */,
+				B7AE85AD1A82ABF200F02F23 /* css-2014-06-30.json in Resources */,
+				B7AE85AC1A82ABF200F02F23 /* cognito-identity-2014-06-30.json in Resources */,
+				B7AE85991A82A35B00F02F23 /* ZBiMViewController.xib in Resources */,
+				B7AE85981A82A35B00F02F23 /* InfoPlist.strings in Resources */,
+				B7AE859F1A82A35B00F02F23 /* Default-568h@2x.png in Resources */,
+				B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */,
+				B7AE85AF1A82ABF200F02F23 /* sqs-2012-11-05.json in Resources */,
+				B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */,
+				B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */,
+				B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6003F586195388D20070C39A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */,
+				B7AE85971A82A35B00F02F23 /* ZBiMViewController.m in Sources */,
+				B7AE85931A82A35B00F02F23 /* UIView+Toast.m in Sources */,
+				B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */,
+				B7AE85A41A82A35B00F02F23 /* main.m in Sources */,
+				B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B7AE85801A82A35B00F02F23 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7AE85811A82A35B00F02F23 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7AE85831A82A35B00F02F23 /* en */,
+			);
+			name = ZBiMViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6003F5BD195388D20070C39A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6003F5BE195388D20070C39A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6003F5C0195388D20070C39A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6003F5C1195388D20070C39A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6003F585195388D10070C39A /* Build configuration list for PBXProject "ZBiM-SDK-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6003F5BD195388D20070C39A /* Debug */,
+				6003F5BE195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ZBiMSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6003F5C0195388D20070C39A /* Debug */,
+				6003F5C1195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6003F582195388D10070C39A /* Project object */;
+}
