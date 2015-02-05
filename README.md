@@ -12,7 +12,7 @@ The SDK requires iOS 7+ and ARC. Contact Zumobi for necessary credentials to get
 ZBiM-SDK-iOS is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "ZBiM-SDK-iOS"
+      pod "ZBiM-SDK-iOS", :git => 'https://github.com/zumobi/zbim-sdk-ios.git', :tag => '1.1.2'
 
 Add the Zumobi provided credentials to your project as resources.
 
