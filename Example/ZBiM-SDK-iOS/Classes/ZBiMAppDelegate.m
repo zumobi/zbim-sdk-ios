@@ -1,16 +1,31 @@
-//
-//  ZBiMAppDelegate.m
-//  ZBiMSampleApp
-//
-//  Created by George Tonev on 4/8/14.
-//  Copyright (c) 2014 Zumobi. All rights reserved.
-//
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2014-2015 Zumobi Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 #import <AdSupport/AdSupport.h>
 
 #import "ZBiMAppDelegate.h"
 #import "ZBiMViewController.h"
-#import "UIView+Toast.h"
 
 // The custom URL scheme is registered as part of the
 // application's info.plist file, so if you want to change it
@@ -40,6 +55,30 @@
     [ZBiM setAdvertiserIdDelegate:self];
     [ZBiM setLoggingDelegate:self];
     [ZBiM whitelistURLScheme:ZBIM_CUSTOM_URL_SCHEME];
+    
+    NSString *currentUser = [ZBiM activeUser];
+    if (!currentUser)
+    {
+        // A new default user is created upon app
+        // first run. There are no tags associated
+        // with the default user. It's app to the
+        // user to create a new user with the right
+        // set of tags using the app's UI.
+        NSError *error = nil;
+        NSString *newUser = [ZBiM generateDefaultUserId];
+        if ([ZBiM createUser:newUser withTags:@[] error:&error])
+        {
+            error = nil;
+            if (![ZBiM setActiveUser:newUser error:&error])
+            {
+                NSLog(@"Failed setting new user (%@) as active. Error: %@", newUser, error);
+            }
+        }
+        else
+        {
+            NSLog(@"Failed creating new user (%@). Error: %@", newUser, error);
+        }
+    }
     
     UILocalNotification *localNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotification)
@@ -89,48 +128,30 @@
     return YES;
 }
 
-+ (void)showToast:(NSString *)message isErrorMessage:(BOOL)isErrorMessage
-{
-    UIView *topView = [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
-    
-    if (!isErrorMessage)
-    {
-        [topView makeToast:message duration:3.0 position:@"top" backgroundColor:[UIColor colorWithRed:63.0f/255.0 green:217.0f/255.0f blue:111.0f / 255.0f alpha:0.9f]];
-    }
-    else
-    {
-        [topView makeToast:message duration:NSTimeIntervalSince1970 position:@"top" backgroundColor:[UIColor colorWithRed:1.0f green:0.0f blue:0.0f alpha:0.8f]];
-    }
-}
-
 #pragma mark ZBiMAdvertiserIdDelegate methods
 
 - (NSString *)advertiserId
 {
+    // The following demonstrates overriding ZBiM SDK's handling of advertiser ID.
+    // By default the ZBiM SDK will first check if "Limit Ad Tracking" has been turned
+    // on inside Settings->Privacy->Advertising. If for whatever reason the app wants
+    // to skip that check and always go straight to returning IDFA, it can do so by
+    // implementing the ZBiMAdvertiserIdDelegate protocol and setting itself as the
+    // ad ID delegate for ZBiM SDK. Alternatively, if the app wants to prevent SDK from
+    // accessing IDFA altogether it can return nil or any other appropriate value from
+    // this method, e.g.:
+    //
+    // return @"sample-ad-ID";
+    
     return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
 }
 
 #pragma mark ZBiMLoggingDelegate methods
 
+// Demonstrates app setting itself as the logging delegate.
 - (void)log:(NSString *)message severityLevel:(ZBiMSeverityLevel)severityLevel verbosityLevel:(ZBiMVerbosityLevel)verbosityLevel
 {
-    if (verbosityLevel == ZBiMLogVerbosityInfo)
-    {
-        BOOL isErrorMessage = (severityLevel <= ZBiMLogSeverityError);
-        
-        if (![NSThread isMainThread])
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [ZBiMAppDelegate showToast:message isErrorMessage:isErrorMessage];
-            });
-        }
-        else
-        {
-            [ZBiMAppDelegate showToast:message isErrorMessage:isErrorMessage];
-        }
-    }
-
-    NSLog(@"%@", message);
+    NSLog(@"ZBiM Sample App: %@", message);
 }
 
 @end

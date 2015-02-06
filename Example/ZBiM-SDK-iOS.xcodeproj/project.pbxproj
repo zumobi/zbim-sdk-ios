@@ -10,7 +10,6 @@
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		B7AE85931A82A35B00F02F23 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85761A82A35B00F02F23 /* UIView+Toast.m */; };
 		B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */; };
 		B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */; };
 		B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */; };
@@ -33,8 +32,6 @@
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B7AE85751A82A35B00F02F23 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
-		B7AE85761A82A35B00F02F23 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMAppDelegate.h; sourceTree = "<group>"; };
 		B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMAppDelegate.m; sourceTree = "<group>"; };
 		B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMContentHubContainerViewController.h; sourceTree = "<group>"; };
@@ -118,8 +115,6 @@
 		B7AE85741A82A35B00F02F23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B7AE85751A82A35B00F02F23 /* UIView+Toast.h */,
-				B7AE85761A82A35B00F02F23 /* UIView+Toast.m */,
 				B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */,
 				B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */,
 				B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */,
@@ -241,7 +236,6 @@
 			files = (
 				B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */,
 				B7AE85971A82A35B00F02F23 /* ZBiMViewController.m in Sources */,
-				B7AE85931A82A35B00F02F23 /* UIView+Toast.m in Sources */,
 				B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */,
 				B7AE85A41A82A35B00F02F23 /* main.m in Sources */,
 				B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */,
