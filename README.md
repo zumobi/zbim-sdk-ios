@@ -2,10 +2,10 @@
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first. The Example app contains sample credentials and configuration.
 
 ## Requirements
-The SDK requires iOS 7+ and ARC. Contact Zumobi for necessary credentials to get started.
+The SDK requires iOS 7+ and ARC. Contact Zumobi for configuration files.
 
 ## Installation
 
@@ -14,7 +14,7 @@ it, simply add the following line to your Podfile:
 
       pod "ZBiM-SDK-iOS", :git => 'https://github.com/zumobi/zbim-sdk-ios.git', :tag => '1.1.2'
 
-Add the Zumobi provided credentials to your project as resources.
+Zumobi will provided a SDK config and public key file. Add these two files to your project as resources.
 
 ## Author
 
