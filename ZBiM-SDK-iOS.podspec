@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     s.author           = { "Zumobi" => "zbim-support@zumobi.com" }
     s.source           = { :git => "https://github.com/zumobi/zbim-sdk-ios.git", :tag => s.version.to_s }
     s.social_media_url = 'https://twitter.com/zumobi'
-
+    s.documentation_url = "https://github.com/zumobi/zbim-sdk-ios/blob/master/ZBiM%20Documentation.pdf?raw=true"
     s.platform     = :ios, '7.0'
     s.requires_arc = true
 
