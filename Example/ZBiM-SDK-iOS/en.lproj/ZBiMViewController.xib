@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZBiMViewController">
             <connections>
                 <outlet property="colorSchemePicker" destination="EcP-sL-2QD" id="ybo-fa-pdl"/>
+                <outlet property="contentSourcePicker" destination="f4h-Ef-QLn" id="Cof-fb-uE1"/>
                 <outlet property="progressView" destination="qV9-0f-6gs" id="xgu-UQ-1uo"/>
                 <outlet property="screenModePicker" destination="bDT-5e-NeO" id="khx-DJ-yXJ"/>
                 <outlet property="showContentHubButton" destination="8" id="W6h-Tl-Lsa"/>
@@ -28,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIl-iP-sB4" userLabel="Vertically Centered Container View">
-                            <rect key="frame" x="0.0" y="100" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="94" width="320" height="190"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                                     <rect key="frame" x="30" y="10" width="260" height="30"/>
@@ -47,7 +48,7 @@
                                     </connections>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bDT-5e-NeO" userLabel="Full Screen/Embedded">
-                                    <rect key="frame" x="30" y="70" width="260" height="29"/>
+                                    <rect key="frame" x="30" y="55" width="260" height="29"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="260" id="3Bp-nH-a9W"/>
                                     </constraints>
@@ -57,19 +58,8 @@
                                     </segments>
                                     <color key="tintColor" red="0.89411764705882346" green="0.34901960784313724" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ape-Br-CaI">
-                                    <rect key="frame" x="30" y="148" width="260" height="29"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="260" id="Ecg-qi-jVx"/>
-                                    </constraints>
-                                    <segments>
-                                        <segment title="Non-blocking Sync"/>
-                                        <segment title="Blocking Sync"/>
-                                    </segments>
-                                    <color key="tintColor" red="0.89411764705882346" green="0.34901960784313724" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
-                                </segmentedControl>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EcP-sL-2QD" userLabel="Light/Dark">
-                                    <rect key="frame" x="30" y="109" width="260" height="29"/>
+                                    <rect key="frame" x="30" y="89" width="260" height="29"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="260" id="tZl-H5-9n6"/>
                                     </constraints>
@@ -79,18 +69,42 @@
                                     </segments>
                                     <color key="tintColor" red="0.89411764709999997" green="0.34901960780000002" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ape-Br-CaI">
+                                    <rect key="frame" x="30" y="123" width="260" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="260" id="Ecg-qi-jVx"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="Non-blocking Sync"/>
+                                        <segment title="Blocking Sync"/>
+                                    </segments>
+                                    <color key="tintColor" red="0.89411764705882346" green="0.34901960784313724" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                </segmentedControl>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f4h-Ef-QLn">
+                                    <rect key="frame" x="30" y="157" width="260" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="260" id="con-17-ivn"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="External Allowed"/>
+                                        <segment title="Local Content Only"/>
+                                    </segments>
+                                    <color key="tintColor" red="0.89411764709999997" green="0.34901960780000002" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="180" id="1Lb-XS-TCx"/>
+                                <constraint firstAttribute="height" constant="190" id="1Lb-XS-TCx"/>
                                 <constraint firstAttribute="centerX" secondItem="bDT-5e-NeO" secondAttribute="centerX" id="BDe-e3-xpG"/>
-                                <constraint firstAttribute="bottom" secondItem="ape-Br-CaI" secondAttribute="bottom" constant="4" id="TDY-ej-BSO"/>
+                                <constraint firstAttribute="centerX" secondItem="f4h-Ef-QLn" secondAttribute="centerX" id="DzD-EP-CSL"/>
+                                <constraint firstAttribute="bottom" secondItem="ape-Br-CaI" secondAttribute="bottom" constant="39" id="TDY-ej-BSO"/>
                                 <constraint firstAttribute="centerX" secondItem="ape-Br-CaI" secondAttribute="centerX" id="UEg-N4-XAn"/>
                                 <constraint firstAttribute="centerX" secondItem="8" secondAttribute="centerX" id="WAV-bI-vTO"/>
+                                <constraint firstAttribute="bottom" secondItem="f4h-Ef-QLn" secondAttribute="bottom" constant="5" id="jmn-7H-WNA"/>
                                 <constraint firstItem="8" firstAttribute="top" secondItem="fIl-iP-sB4" secondAttribute="top" constant="10" id="npB-qa-ePK"/>
-                                <constraint firstAttribute="bottom" secondItem="bDT-5e-NeO" secondAttribute="bottom" constant="82" id="pnN-pg-kWt"/>
+                                <constraint firstAttribute="bottom" secondItem="bDT-5e-NeO" secondAttribute="bottom" constant="107" id="pnN-pg-kWt"/>
                                 <constraint firstAttribute="centerX" secondItem="EcP-sL-2QD" secondAttribute="centerX" id="qOF-XM-d5V"/>
-                                <constraint firstAttribute="bottom" secondItem="EcP-sL-2QD" secondAttribute="bottom" constant="43" id="qmS-0N-ttV"/>
+                                <constraint firstAttribute="bottom" secondItem="EcP-sL-2QD" secondAttribute="bottom" constant="73" id="qmS-0N-ttV"/>
                                 <constraint firstAttribute="width" constant="320" id="yH0-7l-eTg"/>
                             </constraints>
                         </view>
@@ -165,7 +179,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="ZsU-iV-GzE" secondAttribute="centerY" id="0ed-nI-ByN"/>
                         <constraint firstAttribute="centerX" secondItem="ZsU-iV-GzE" secondAttribute="centerX" id="XCt-Vy-ZVS"/>

@@ -36,11 +36,9 @@ static NSArray *allTags;
     NSString *_pickerSelection;
 }
 
+#warning In order to see content tailoring in action, change the following tag array to reflect the set of tags used in the content being served.
 +(void)initialize
 {
-    // IMPORTANT: Change the following tag array to reflect the set of
-    // tags used by the Content Hub that this sample app is going to host.
-    // Otherwise content tailoring will not work properly. 
     allTags = [NSArray arrayWithObjects:@"tag1", @"tag2", @"tag3", nil];
 }
 
@@ -106,6 +104,15 @@ static NSArray *allTags;
     {
         ZBiMContentHubContainerViewController *contentHubContainer = [[ZBiMContentHubContainerViewController alloc] initWithNibName:@"ZBiMContentHubContainerViewController" bundle:nil];
         [self presentViewController:contentHubContainer animated:YES completion:nil];
+    }
+    
+    if (self.contentSourcePicker.selectedSegmentIndex == 0)
+    {
+        [ZBiM setContentSource:ZBiMContentSourceExternalAllowed];
+    }
+    else
+    {
+        [ZBiM setContentSource:ZBiMContentSourceLocalOnly];
     }
 }
 

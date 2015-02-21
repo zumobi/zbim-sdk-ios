@@ -27,11 +27,6 @@
 #import "ZBiMAppDelegate.h"
 #import "ZBiMViewController.h"
 
-// The custom URL scheme is registered as part of the
-// application's info.plist file, so if you want to change it
-// you must update both places.
-#define ZBIM_CUSTOM_URL_SCHEME @"zbimsampleapp"
-
 @implementation ZBiMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -54,7 +49,6 @@
     [ZBiM start];
     [ZBiM setAdvertiserIdDelegate:self];
     [ZBiM setLoggingDelegate:self];
-    [ZBiM whitelistURLScheme:ZBIM_CUSTOM_URL_SCHEME];
     
     NSString *currentUser = [ZBiM activeUser];
     if (!currentUser)

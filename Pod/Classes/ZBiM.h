@@ -69,6 +69,14 @@ typedef enum : NSUInteger
     ZBiMColorSchemeLight
 } ZBiMColorScheme;
 
+#pragma mark Content Sources
+
+typedef enum : NSUInteger
+{
+    ZBiMContentSourceLocalOnly = 0,
+    ZBiMContentSourceExternalAllowed
+} ZBiMContentSource;
+
 #pragma mark ZBiM notifications
 
 /**
@@ -106,7 +114,9 @@ extern NSString *const ZBiMContentTypeChanged;
 
 // Key and values in the ZBiMContentTypeChanged notification's userInfo dictionary,
 // used to communicate the latest type of content loaded in the Content Hub.
-extern NSString *const ZBiMResourceType;        // key
+extern NSString *const ZBiMResourceTitle;       // key for resource's title value
+extern NSString *const ZBiMResourceURL;         // key for resource's URL value
+extern NSString *const ZBiMResourceType;        // key for resource's type
 extern NSString *const ZBiMResourceTypeHub;     // value ("hub")
 extern NSString *const ZBiMResourceTypeChannel; // value ("channel")
 extern NSString *const ZBiMResourceTypeArticle; // value ("article")
@@ -385,6 +395,27 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 + (void) setColorScheme:(ZBiMColorScheme)colorScheme;
 
 /**
+ Gets the Content Hub's content source. 
+ 
+ @return See description of setContentSource:'s contentSource parameter
+ for details on the possible values and their meaning.
+ */
++ (ZBiMContentSource) contentSource;
+
+/**
+ Sets the Content Hub's content source. 
+ 
+ @param contentSource When the value of contentSource is ZBiMContentSourceLocalOnly,
+ then all content must have been previously downloaded and available locally.
+ All network requests having a URL that's not part of DB will be declined.
+ If contentSource is ZBiMContentSourceExternalAllowed, then external content
+ will be allowed, e.g. and embedded image or video hosted remotely. Resources
+ representing a container for one of the three main resource types, i.e. hub,
+ channel and article must still come from local DB, regardless of content source value.
+ */
++ (void) setContentSource:(ZBiMContentSource)contentSource;
+
+/**
  Gives the ZBiM SDK the option to confirm if it can handle a local notification. If the SDK
  does not recognize the format, e.g. it's a local notification scheduled
  outside of the SDK, it will inform the application (via return value)
@@ -434,11 +465,20 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 + (void) whitelistURL:(NSURL *)url;
 
 /**
- Allows instructing ZBiM SDK which URL schemes should be exempt from its security
+ Allows instructing ZBiM SDK which domain names should be exempt from its security
  restrictions (enforced when user is interacting with the Content Hub).
-
- @param urlScheme Scheme to be exempt from ZBiM SDK's security restrictions.
+ Similar to whitelistURL, but less granular.
+ 
+ @param domainName Domain name to be exempt from ZBiM SDK's security restrictions. E.g. www.zumobi.com
  */
-+ (void) whitelistURLScheme:(NSString *)urlScheme;
++ (void) whitelistDomainName:(NSString *)domainName;
+
+/**
+ Allows ZBiM SDK to distinguish custom URL schemes handled by the host
+ application and provide special pass-through treatment.
+ 
+ @param customURLScheme Scheme to be treated as requiring a pass-through.
+ */
++ (void) registerCustomURLScheme:(NSString *)customURLScheme;
 
 @end

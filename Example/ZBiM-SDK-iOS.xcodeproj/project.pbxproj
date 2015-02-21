@@ -346,10 +346,7 @@
 				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -365,10 +362,7 @@
 				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

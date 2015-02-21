@@ -31,6 +31,7 @@
 @property (nonatomic, weak) IBOutlet UISegmentedControl *screenModePicker;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *colorSchemePicker;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *syncModePicker;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *contentSourcePicker;
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, weak) IBOutlet UIButton *switchUserButton;
 @property (nonatomic, weak) IBOutlet UIPickerView *switchUserPickerView;

@@ -193,6 +193,9 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
 
 - (void)handleContentTypeChanged:(NSNotification *)notification
 {
+    NSLog(@"New content presented. URL: %@, title: %@, type: %@",
+          notification.userInfo[ZBiMResourceURL], notification.userInfo[ZBiMResourceTitle], notification.userInfo[ZBiMResourceType]);
+    
     if ([notification.userInfo[ZBiMResourceType] isEqualToString:ZBiMResourceTypeArticle])
     {
         _contentHubShowingDetailsPage = YES;
