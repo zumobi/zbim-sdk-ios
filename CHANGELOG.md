@@ -2,7 +2,7 @@
 
 ## 1.1.4
 
-### New Feeatures
+### New Features
 * Enabled a host application to configure the Content Hub's background color.
 
 ### Resolved Issues
