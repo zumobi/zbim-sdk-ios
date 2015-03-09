@@ -151,6 +151,7 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 - (BOOL) canGoForward;
 - (BOOL) dismiss:(NSError * __autoreleasing *)error;
 - (void) setScrollDelegate:(id<UIScrollViewDelegate>)delegate;
+- (void) setBackgroundColor:(UIColor *)color;
 @end
 
 #pragma mark ZBiM
