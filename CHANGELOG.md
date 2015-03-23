@@ -1,5 +1,13 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.5
+
+### Resolved Issues
+* Content Hub can get stuck loading certain assets if device is connected to network, but experiencing 100% packet loss.
+* Channel items not sorted by publishing date.
+* YouTube videos have links allowing users to navigate to unrelated YouTube content inside Content Hub.
+* Content-changed notification not firing consistently due to cache interference.
+
 ## 1.1.4
 
 ### New Features
