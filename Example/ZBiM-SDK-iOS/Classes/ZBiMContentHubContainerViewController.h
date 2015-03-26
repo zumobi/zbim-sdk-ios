@@ -32,6 +32,8 @@
 @property (nonatomic, weak) IBOutlet UIView *navBar;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *tabPicker;
 @property (nonatomic, weak) IBOutlet UIWebView *regularWebView;
+@property (nonatomic, weak) IBOutlet UILabel *resourceTypeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)closeButtonPressed:(id)sender;

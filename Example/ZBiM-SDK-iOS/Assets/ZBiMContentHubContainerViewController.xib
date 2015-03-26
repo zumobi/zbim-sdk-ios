@@ -12,7 +12,9 @@
                 <outlet property="contentHubContainerView" destination="3" id="14"/>
                 <outlet property="navBar" destination="m2t-uh-6mm" id="1kY-tz-2cS"/>
                 <outlet property="regularWebView" destination="pLJ-3U-OEg" id="m8M-fB-Gqd"/>
+                <outlet property="resourceTypeLabel" destination="qoJ-CT-tYq" id="pZf-v6-jdg"/>
                 <outlet property="tabPicker" destination="XUJ-zv-R7U" id="x5S-Lg-vV2"/>
+                <outlet property="titleLabel" destination="chT-uL-d1Y" id="goj-Kd-5Ez"/>
                 <outlet property="view" destination="1" id="15"/>
             </connections>
         </placeholder>
@@ -56,14 +58,34 @@
                                 <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="53"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoJ-CT-tYq" userLabel="Resource Type label">
+                            <rect key="frame" x="230" y="12" width="75" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="BBe-nU-tZo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chT-uL-d1Y" userLabel="Resource Title label">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="qoJ-CT-tYq" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="14" id="5Q7-bs-J0Y"/>
+                        <constraint firstAttribute="centerY" secondItem="qoJ-CT-tYq" secondAttribute="centerY" constant="-0.5" id="IBF-mf-Yma"/>
                         <constraint firstItem="19" firstAttribute="leading" secondItem="m2t-uh-6mm" secondAttribute="leading" constant="8" id="IFH-Id-JDZ"/>
+                        <constraint firstItem="chT-uL-d1Y" firstAttribute="leading" secondItem="qoJ-CT-tYq" secondAttribute="trailing" id="IGQ-ow-jGE"/>
                         <constraint firstItem="19" firstAttribute="top" secondItem="m2t-uh-6mm" secondAttribute="top" constant="8" id="P7d-v3-Fov"/>
                         <constraint firstItem="19" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="-108" id="Ppr-7R-cLb"/>
                         <constraint firstItem="16" firstAttribute="top" secondItem="m2t-uh-6mm" secondAttribute="top" constant="8" id="QIc-p0-HgJ"/>
+                        <constraint firstItem="qoJ-CT-tYq" firstAttribute="leading" secondItem="chT-uL-d1Y" secondAttribute="leading" constant="-75" id="Vxt-jY-fez"/>
                         <constraint firstAttribute="height" constant="44" id="rxd-4H-NlR"/>
+                        <constraint firstAttribute="trailing" secondItem="chT-uL-d1Y" secondAttribute="trailing" constant="15" id="tU0-kR-flF"/>
+                        <constraint firstAttribute="centerY" secondItem="chT-uL-d1Y" secondAttribute="centerY" constant="-0.5" id="wQf-yl-uEB"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3" userLabel="WebViewContainer">
@@ -82,8 +104,8 @@
                         <constraint firstAttribute="bottom" secondItem="pLJ-3U-OEg" secondAttribute="bottom" id="nDL-78-mbI"/>
                     </constraints>
                 </view>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XUJ-zv-R7U">
-                    <rect key="frame" x="30" y="532" width="260" height="29"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XUJ-zv-R7U">
+                    <rect key="frame" x="37" y="532" width="247" height="29"/>
                     <segments>
                         <segment title="Content Hub"/>
                         <segment title="Regular Web View"/>

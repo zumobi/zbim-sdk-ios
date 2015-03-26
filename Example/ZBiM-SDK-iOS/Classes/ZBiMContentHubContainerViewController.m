@@ -195,6 +195,18 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
 {
     NSLog(@"New content presented. URL: %@, title: %@, type: %@",
           notification.userInfo[ZBiMResourceURL], notification.userInfo[ZBiMResourceTitle], notification.userInfo[ZBiMResourceType]);
+
+    self.resourceTypeLabel.text = notification.userInfo[ZBiMResourceType];
+
+    NSString *title = notification.userInfo[ZBiMResourceTitle];
+    if (title && title.length > 0)
+    {
+        self.titleLabel.text = [NSString stringWithFormat:@": %@", title];
+    }
+    else
+    {
+        self.titleLabel.text = nil;
+    }
     
     if ([notification.userInfo[ZBiMResourceType] isEqualToString:ZBiMResourceTypeArticle])
     {

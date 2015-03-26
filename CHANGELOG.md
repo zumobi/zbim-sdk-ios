@@ -1,5 +1,10 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.6
+
+### New Features
+* Added throttling for forward and backward navigation requests inside Content Hub to avoid unwanted side effects when multiple requests are issued in close succession.
+
 ## 1.1.5
 
 ### Resolved Issues
