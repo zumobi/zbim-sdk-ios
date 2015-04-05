@@ -262,29 +262,111 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 + (NSArray *)tagsForUser:(NSString *)userId error:(NSError * __autoreleasing *)error;
 
 /**
- Displays the content hub in modal view mode.
+ Displays the Content Hub UI in a modal view mode. The SDK decides what is the appropriate presenting view controller.
+ If content bundle contains multiple hub pages the one that matches best the set of tags associated with current active user is selected and loaded.
+ If tags are not used, the first available hub page is selected and loaded, based on an internal ordering scheme, as specified in the content bundle.
+ 
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ */
++ (void) presentHub:(void (^)(BOOL success, NSError *error))completionCallback;
 
- @param tags A set of tags to be used to override the ones associated with the current active user. Can be nil.
+/**
+ Displays the Content Hub UI using the presenting view controller passed as a parameter.
+ If content bundle contains multiple hub pages the one that matches best the set of tags associated with current active user is selected and loaded.
+ If tags are not used, the first available hub page is selected and loaded, based on an internal ordering scheme, as specified in the content bundle.
+ 
+ @param presentingViewController A view controller to be used to present the Content Hub.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ */
+
++ (void) presentHubWithPresentingViewController:(UIViewController *)presentingViewController
+                                     completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI inside the parent view passed as a parameter. 
+ If content bundle contains multiple hub pages the one that matches best the set of tags associated with current active user is selected and loaded.
+ If tags are not used, the first available hub page is selected and loaded, based on an internal ordering scheme, as specified in the content bundle.
+ 
+ @param parentView A view that will have the content hub's view as a child. Content hub will use 100% of the parent view area.
+ @param parentViewController A view controller for the parent view, which will have the content hub's view controller as a child view controller.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ 
+ @return A content hub delegate which allows client app to interact with content hub via methods provided by the ZBiMContentHubDelegate protocol.
+ */
++ (id<ZBiMContentHubDelegate>) presentHubWithParentView:(UIView *)parentView
+                             parentViewController:(UIViewController *)parentViewController
+                                       completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI in a modal view mode. The SDK decides what is the appropriate presenting view controller.
+ If content bundle contains multiple hub pages, the one that matches best the set of tags passed as a parameter is selected and loaded.
+
+ @param tags A set of tags to be used when selecting a hub page to load.
  @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
  */
 + (void) presentHubWithTags:(NSArray *)tags completion:(void (^)(BOOL success, NSError *error))completionCallback;
 
 /**
- Displays the content hub inside the parent view passed as parameter.
+ Displays the Content Hub UI using the presenting view controller passed as a parameter.
+ If content bundle contains multiple hub pages, the one that matches best the set of tags passed as a parameter is selected and loaded.
+ 
+ @param presentingViewController A view controller to be used to present the Content Hub.
+ @param tags A set of tags to be used when selecting a hub page to load.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ */
++ (void) presentHubWithTags:(NSArray *)tags
+   presentingViewController:(UIViewController *)presentingViewController
+                 completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI inside the parent view passed as a parameter. 
+ If content bundle contains multiple hub pages, the one that matches best the set of tags passed as a parameter is selected and loaded.
 
  @param parentView A view that will have the content hub's view as a child. Content hub will use 100% of the parent view area.
  @param parentViewController A view controller for the parent view, which will have the content hub's view controller as a child view controller.
- @param tags A set of tags to be used to override the ones associated with the current active user. Can be nil.
+ @param tags A set of tags to be used when selecting a hub page to load.
  @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
  
- @return A content hub delegate which allows client app
-         to interact with content hub via methods provided
-         by the ZBiMContentHubDelegate protocol.
+ @return A content hub delegate which allows client app to interact with content hub via methods provided by the ZBiMContentHubDelegate protocol.
  */
 + (id<ZBiMContentHubDelegate>) presentHubWithTags:(NSArray *)tags
                                        parentView:(UIView *)parentView
                              parentViewController:(UIViewController *)parentViewController
                                        completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI in a modal view mode, loading a specific piece of content. The SDK decides what is the appropriate presenting view controller.
+ 
+ @param uri A URI identifying the content to be loaded. URI can point to hub, channel or article.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ */
++ (void) presentHubWithUri:(NSString *)uri completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI using the presenting view controller passed as a parameter, loading a specific piece of content.
+ 
+ @param presentingViewController A view controller to be used to present the Content Hub.
+ @param uri A URI identifying the content to be loaded. URI can point to hub, channel or article.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ */
++ (void) presentHubWithUri:(NSString *)uri
+  presentingViewController:(UIViewController *)presentingViewController
+                completion:(void (^)(BOOL success, NSError *error))completionCallback;
+
+/**
+ Displays the Content Hub UI inside the parent view passed as a parameter, loading a specific piece of content.
+ 
+ @param parentView A view that will have the content hub's view as a child. Content hub will use 100% of the parent view area.
+ @param parentViewController A view controller for the parent view, which will have the content hub's view controller as a child view controller.
+ @param uri A URI identifying the content to be loaded. URI can point to hub, channel or article.
+ @param completionCallback A block of code to be executed upon completion of the task. Block's parameters indicate the task's outcome.
+ 
+ @return A content hub delegate which allows client app to interact with content hub via methods provided by the ZBiMContentHubDelegate protocol.
+ */
++ (id<ZBiMContentHubDelegate>) presentHubWithUri:(NSString *)uri
+                                      parentView:(UIView *)parentView
+                            parentViewController:(UIViewController *)parentViewController
+                                      completion:(void (^)(BOOL success, NSError *error))completionCallback;
 
 /**
  Displays a previously presented content hub, e.g. one that was

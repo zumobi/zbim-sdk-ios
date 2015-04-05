@@ -1,5 +1,11 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.7
+
+### New Features
+* Allow host application to present Content Hub with a specific URI.
+* Allow host application to pass presenting view controller as an argument.
+
 ## 1.1.6
 
 ### New Features
