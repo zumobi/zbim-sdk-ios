@@ -51,17 +51,14 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     
     [self.navBar.superview addConstraints:_navBarConstraints];
 
-
-    _contentHub = [ZBiM presentHubWithTags:nil
-                                parentView:self.contentHubContainerView
-                      parentViewController:self
-                                completion:^(BOOL success, NSError *error) {
-
-        if (!success)
-        {
-            NSLog(@"Failed opening content hub. Error: %@", error);
-        }
-    }];
+    _contentHub = [ZBiM presentHubWithParentView:self.contentHubContainerView
+                            parentViewController:self
+                                      completion:^(BOOL success, NSError *error) {
+                                          if (!success)
+                                          {
+                                              NSLog(@"Failed presenting an embedded content hub. Error: %@", error);
+                                          }
+                                      }];
 
     [_contentHub setScrollDelegate:self];
     
@@ -166,13 +163,6 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
                 NSLog(@"Failed dismissing content hub. Error: %@", error);
             }
         }
-        
-        // Even if Regular Web View was last selected, there
-        // can still be a Content Hub that has not been
-        // released. Set the following strong reference to nil
-        // so it can be deallocated and corresponding resources
-        // properly cleaned up.
-        _contentHub = nil;
     }];
 }
 
@@ -233,7 +223,30 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     _contentHubShowingDetailsPage = NO;
 }
 
-#pragma Mark UIScrollViewDelegate methods
+#pragma mark ZBiMContentHubContainerDelegate methods
+
+// The closeContentHub method provides a way for an embedded
+// Content Hub to communicate back to its parent (container)
+// view controller, telling it that it needs to be dismissed.
+// What that means is up to the parent view controller. Here
+// we choose to dismiss the Content Hub as well as the parent
+// view controller itself. Alternatively we could have dismissed
+// the Content Hub, and nil the strong reference to it, but kept
+// the parent view controller. Or we could have dismissed the
+// Content Hub, but kept the strong reference, so it can be
+// displayed again later.
+
+- (void) closeContentHub
+{
+    NSError *error = nil;
+    if (![_contentHub dismiss:&error])
+    {
+        NSLog(@"Failed dimissing Content Hub. Error: %@", error);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark UIScrollViewDelegate methods
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {

@@ -36,7 +36,7 @@ static NSArray *allTags;
     NSString *_pickerSelection;
 }
 
-#warning In order to see content tailoring in action, change the following tag array to reflect the set of tags used in the content being served.
+#pragma message "In order to see content tailoring in action, change the following tag array to reflect the set of tags used in the content being served."
 +(void)initialize
 {
     allTags = [NSArray arrayWithObjects:@"tag1", @"tag2", @"tag3", nil];
@@ -93,7 +93,7 @@ static NSArray *allTags;
     
     if (self.screenModePicker.selectedSegmentIndex == 0)
     {
-        [ZBiM presentHubWithTags:nil completion:^(BOOL success, NSError *error) {
+        [ZBiM presentHub:^(BOOL success, NSError *error) {
             if (!success)
             {
                 NSLog(@"Failed presenting content hub. Error: %@", error);

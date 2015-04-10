@@ -154,6 +154,15 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 - (void) setBackgroundColor:(UIColor *)color;
 @end
 
+/**
+ A protocol to be implemented by Content Hub's parent
+ view controller (assumes embedded mode), giving the
+ Content Hub the ability to commicate back with its parent.
+ */
+@protocol ZBiMContentHubContainerDelegate <NSObject>
+- (void) closeContentHub;
+@end
+
 #pragma mark ZBiM
 
 /**

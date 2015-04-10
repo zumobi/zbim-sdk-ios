@@ -1,5 +1,10 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.8
+
+### New Features
+* Added support for an embedded Content Hub to delegate commands to parent view controller.
+
 ## 1.1.7
 
 ### New Features

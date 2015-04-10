@@ -23,8 +23,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ZBiM.h"
 
-@interface ZBiMContentHubContainerViewController : UIViewController<UIScrollViewDelegate>
+@interface ZBiMContentHubContainerViewController : UIViewController<UIScrollViewDelegate, ZBiMContentHubContainerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView *contentHubContainerView;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
