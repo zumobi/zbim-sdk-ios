@@ -1,5 +1,10 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.9
+
+### Resolved Issues
+* Presenting a new Content Hub can fail if done immediately after previous one has been dismissed, e.g. in the same iterration of the run loop. 
+
 ## 1.1.8
 
 ### New Features
