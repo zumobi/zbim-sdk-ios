@@ -163,6 +163,17 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
 - (void) closeContentHub;
 @end
 
+/**
+ A protocol allowing the client application to register a class as
+ the provider of checking-for-new-content, download-in-prgoress and
+ error-reporting views, thus overriding the default status reporting UI.
+ */
+@protocol ZBiMContentHubStatusUIDelegate <NSObject>
+- (UIView *) getErrorView:(NSString *)optionalMessage;
+- (UIView *) getCheckingForContentView:(NSString *)optionalMessage;
+- (UIView *) getDownloadProgressView:(NSString *)optionalMessage percentCompleted:(CGFloat)percentCompleted;
+@end
+
 #pragma mark ZBiM
 
 /**
@@ -572,5 +583,12 @@ extern NSString *const ZBiMResourceTypeArticle; // value ("article")
  @param customURLScheme Scheme to be treated as requiring a pass-through.
  */
 + (void) registerCustomURLScheme:(NSString *)customURLScheme;
+
+/**
+ Allows the client application to customize the checking-for-new-content, 
+ download-in-progress and error-reporting UIs (part of Content Hub) by 
+ registering a class to be the provider for these status reporting views.
+ */
++ (void) setCustomStatusUIDelegate:(id<ZBiMContentHubStatusUIDelegate>)delegate;
 
 @end

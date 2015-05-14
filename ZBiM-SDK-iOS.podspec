@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "ZBiM-SDK-iOS"
-    s.version          = "1.1.9"
+    s.version          = "1.1.10"
     s.summary          = "The ZBiM SDK for iOS handles content marketing in your app"
     s.description      = <<-DESC
                        The ZBiM SDK for iOS handles all the issues surrounding getting content securely into your existing application. The SDK

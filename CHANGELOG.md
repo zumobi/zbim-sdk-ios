@@ -1,5 +1,14 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.10
+
+### New Features
+* Application can register itself as the provider for status reporting views, e.g. checking-for-new-content, download-in-progress, error-encountered, thus overriding the default UI.
+* Application can include pre-cached content, which allows for a zero-delay user experience when showing Content Hub. 
+
+### Resolved Issues
+* Status reporting UI was getting stuck on checking-for-new-content stage, unable to update status reporting UI to reflect download-in-progress.
+
 ## 1.1.9
 
 ### Resolved Issues
