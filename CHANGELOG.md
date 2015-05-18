@@ -1,5 +1,10 @@
 # ZBiM SDK CHANGELOG
 
+## 1.1.11
+
+### Resolved Issues
+* Minor fix related to metrics reporting. 
+
 ## 1.1.10
 
 ### New Features
