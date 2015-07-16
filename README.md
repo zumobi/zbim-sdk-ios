@@ -14,7 +14,7 @@ it, simply add the following line to your Podfile:
 
       pod "ZBiM-SDK-iOS", :git => 'https://github.com/zumobi/zbim-sdk-ios.git', :tag => '1.1.4'
 
-Zumobi will provided a SDK config and public key file. Add these two files to your project as resources.
+Zumobi will provide an SDK config and public key file. Add these two files to your project as resources.
 
 ## Author
 
