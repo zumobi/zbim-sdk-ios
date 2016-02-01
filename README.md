@@ -741,5 +741,5 @@ For questions or comments please send email to zbim-support@zumobi.com.
 
 ZBiM-SDK-iOS is available under the MIT license. See the LICENSE file for more info.
 
-[diagram1]: docs/diagram1.png
-[diagram2]: docs/diagram2.png
+[diagram1]: assets/diagram1.png
+[diagram2]: assets/diagram2.png
