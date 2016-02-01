@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,22 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ZBiM.h"
 
-@interface ZBiMViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ZBiMViewController : UIViewController<ZBiMLocationServiceDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *showContentHubButton;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *screenModePicker;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *colorSchemePicker;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *syncModePicker;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *contentSourcePicker;
+@property (weak, nonatomic) IBOutlet UIButton *userManagmentButton;
+@property (weak, nonatomic) IBOutlet UIButton *configureContentHubButton;
+@property (weak, nonatomic) IBOutlet UIButton *configureContentProviderButton;
+@property (weak, nonatomic) IBOutlet UIButton *showcasesButton;
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
-@property (nonatomic, weak) IBOutlet UIButton *switchUserButton;
-@property (nonatomic, weak) IBOutlet UIPickerView *switchUserPickerView;
-@property (nonatomic, weak) IBOutlet UIView *switchUserPickerContainerView;
 
 - (IBAction)showContentHubButtonPressed:(id)sender;
-- (IBAction)createNewUserPressed:(id)sender;
-- (IBAction)switchUser:(id)sender;
-- (IBAction)forceDBRefresh:(id)sender;
-- (IBAction)pickerSelectionDone:(id)sender;
-- (IBAction)pickerSelectionCancelled:(id)sender;
+- (IBAction)configureContentHub:(id)sender;
+- (IBAction)configureContentProviderButtonPressed:(id)sender;
+- (IBAction)showUserManagementView:(id)sender;
+- (IBAction)showcasesButtonPressed:(id)sender;
+
 @end

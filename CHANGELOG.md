@@ -1,5 +1,17 @@
 # ZBiM SDK CHANGELOG
 
+## 1.2
+
+### New Features
+* Optimizations around content downloading. Adds support for different initial download and subsequent refresh modes.
+* Pilot program support, enabling only a subset of all users to be enrolled. Controllable remotely (via portal page).
+* New APIs allowing host application read/write access to user's tag profile. 
+* Adds support for updating SDK config and public key during runtime. Useful for remote reconfiguration without rebuilding application.
+* Ability to annotate different Content Hub entry points for the purpose of metrics reporting.
+
+### Resolved Issues
+* Performance and stability improvements.
+
 ## 1.1.11
 
 ### Resolved Issues
@@ -17,7 +29,7 @@
 ## 1.1.9
 
 ### Resolved Issues
-* Presenting a new Content Hub can fail if done immediately after previous one has been dismissed, e.g. in the same iterration of the run loop. 
+* Presenting a new Content Hub can fail if done immediately after previous one has been dismissed, e.g. in the same iteration of the run loop. 
 
 ## 1.1.8
 

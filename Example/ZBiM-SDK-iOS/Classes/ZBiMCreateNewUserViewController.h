@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZBiMCreateNewUserViewController : UIViewController
+@interface ZBiMCreateNewUserViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *userNameTextField;
-@property (nonatomic, weak) IBOutlet UIScrollView *checkboxesContainer;
 @property (nonatomic, weak) IBOutlet UIButton *createUserButton;
-@property (nonatomic, weak) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UILabel *userNameDescription;
 
 - (IBAction)createNewUserButtonPressed:(id)sender;
-- (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)editingEnded:(id)sender;
-
-- (void)showAvailableTags:(NSArray *)tags;
 
 @end

@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,36 @@
  */
 
 #import <AdSupport/AdSupport.h>
-
+#import "UINavigationController+CompletionHandler.h"
 #import "ZBiMAppDelegate.h"
 #import "ZBiMViewController.h"
+#import "ZBiMContentProviderConfigViewController.h"
+#import "ZBiMProductPageViewController.h"
+#import "SampleAppUtilities.h"
+
+NSString * const PresentationModeKey = @"ZBiMSampleApp.PresentationModeKey";
+NSString * const ColorSchemeModeKey = @"ZBiMSampleApp.ColorSchemeModeKey";
+NSString * const NetworkModeKey = @"ZBiMSampleApp.NetworkModeKey";
+
+NSString * const SampleAppScheme = @"zbimsampleapp";
+NSString * const DetailPageScheme = @"detailpage";
+NSString * const ZBiMScheme = @"zbimdb";
+NSString * const HttpScheme = @"http";
 
 @implementation ZBiMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[ZBiMViewController alloc] initWithNibName:@"ZBiMViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL configureContentProvider = [[standardUserDefaults objectForKey:ShowConfigOnStartupSettingKey] boolValue];
+    
+    if ([standardUserDefaults objectForKey:PresentationModeKey] == nil)
+    {
+        [standardUserDefaults setInteger:0 forKey:PresentationModeKey];
+        [standardUserDefaults setInteger:0 forKey:ColorSchemeModeKey];
+        [standardUserDefaults setInteger:0 forKey:NetworkModeKey];
+    }
+    [standardUserDefaults synchronize];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     // In iOS 8 and later, the application must explicitly
@@ -45,51 +63,21 @@
     }
 #endif
     
-    // Initialize the ZBiM SDK
-    [ZBiM start];
-    [ZBiM setAdvertiserIdDelegate:self];
-    [ZBiM setLoggingDelegate:self];
-    
-    NSString *currentUser = [ZBiM activeUser];
-    if (!currentUser)
+    if (!configureContentProvider)
     {
-        // A new default user is created upon app
-        // first run. There are no tags associated
-        // with the default user. It's app to the
-        // user to create a new user with the right
-        // set of tags using the app's UI.
-        NSError *error = nil;
-        NSString *newUser = [ZBiM generateDefaultUserId];
-        if ([ZBiM createUser:newUser withTags:@[] error:&error])
-        {
-            error = nil;
-            if (![ZBiM setActiveUser:newUser error:&error])
-            {
-                NSLog(@"Failed setting new user (%@) as active. Error: %@", newUser, error);
-            }
-        }
-        else
-        {
-            NSLog(@"Failed creating new user (%@). Error: %@", newUser, error);
-        }
+        [self initializeZBiMSDK:[launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey]];
     }
     
-    UILocalNotification *localNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotification)
-    {
-        if (![ZBiM handleLocalNotification:localNotification showAlert:NO])
-        {
-            // This was not a ZBiM local notification, so the
-            // application must decide how to handle it. In the
-            // case of this sample app, just show an alert.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"UNHANDLED: %@", localNotification.alertAction]
-                                                            message:[NSString stringWithFormat:@"UNHANDLED: %@", localNotification.alertBody]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ignore"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    }
+    //Set the font to be used for navigation bar items
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes: @{NSFontAttributeName:[SampleAppUtilities regularFontWithScale:[SampleAppUtilities scaleFactor]]}
+     forState:UIControlStateNormal];
+    
+    //Reposition UINavigationBar items to be centered on iPads
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+      setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -17.2 * ([SampleAppUtilities scaleFactor] - 1)) forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:(-22 * ([SampleAppUtilities scaleFactor] - 1)) forBarMetrics:UIBarMetricsDefault];
     
     return YES;
 }
@@ -112,14 +100,127 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom URL Handler"
-                                                    message:[NSString stringWithFormat:@"App received request to handle custom URL scheme: %@", url]
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ignore"
-                                          otherButtonTitles:nil];
-    [alert show];
+    UIViewController *currentViewController = [self getTopViewController];
     
+    // Check to see if content provider is being configured
+    // if so alert user that provider must be configured
+    if ([self.viewController isMemberOfClass:[ZBiMContentProviderConfigViewController class]])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Configure Content Provider"
+                                                        message:[NSString stringWithFormat:@"A content provider must be configured before deep-linking can occur."]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    else
+    {
+        if ([currentViewController isMemberOfClass:[ZBiMProductPageViewController class]])
+        {
+            //Dismiss current details page before new content is opened
+            [currentViewController dismissViewControllerAnimated:YES completion:^{
+                [self performCustomURLSchemeDetection:url];
+            }];
+        }
+        else
+        {
+            [self performCustomURLSchemeDetection:url];
+        }
+    }
     return YES;
+}
+
+- (void)performCustomURLSchemeDetection:(NSURL *)url
+{
+    if ([[url scheme] isEqualToString:SampleAppScheme])
+    {
+        NSString* absoluteStringUrl = [[url absoluteString] stringByReplacingOccurrencesOfString:SampleAppScheme withString:ZBiMScheme];
+        id<ZBiMContentHubDelegate> contentHub = [ZBiM getCurrentContentHub];
+        if (contentHub)
+        {
+            [contentHub loadContentWithURI:absoluteStringUrl];
+        }
+        else
+        {
+            [ZBiM presentHubWithUri:absoluteStringUrl completion:nil];
+        }
+        
+    }
+    else if ([[url scheme] isEqualToString:DetailPageScheme])
+    {
+        ZBiMProductPageViewController *productPageViewController = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"ZBiMProductPageViewController"];
+        
+        NSString* absoluteStringUrl = [[url absoluteString] stringByReplacingOccurrencesOfString:DetailPageScheme withString:HttpScheme];
+        [productPageViewController setURL:[NSURL URLWithString:absoluteStringUrl]];
+        
+        [[self getTopViewController] presentViewController:productPageViewController animated:YES completion:nil];
+    }
+}
+
+- (void)initializeZBiMSDK:(UILocalNotification *)localNotification
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *pubKeyPath = [standardUserDefaults objectForKey:PubKeyOverrideSettingKey];
+    NSString *zbimConfigPath = [standardUserDefaults objectForKey:ZBiMConfigOverrideSettingKey];
+    
+    if (pubKeyPath && zbimConfigPath)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *libraryDirectory = [paths objectAtIndex:0];
+        
+        [ZBiM setPathToPublicKey:[libraryDirectory stringByAppendingPathComponent:pubKeyPath]];
+        [ZBiM setPathToConfig:[libraryDirectory stringByAppendingPathComponent:zbimConfigPath]];
+    }
+    else if (pubKeyPath || zbimConfigPath)
+    {
+        NSLog(@"Either both paths (to files containing public key and ZBiM config) are defined, or these are not used.");
+    }
+    
+    // Initialize the ZBiM SDK
+    [ZBiM start];
+    [ZBiM setAdvertiserIdDelegate:self];
+    [ZBiM setLoggingDelegate:self];
+    
+    NSString *currentUser = [ZBiM activeUser];
+    if (!currentUser)
+    {
+        // A new default user is created upon app
+        // first run. There are no tags associated
+        // with the default user. It's app to the
+        // user to create a new user with the right
+        // set of tags using the app's UI.
+        NSError *error = nil;
+        NSString *newUser = [ZBiM generateDefaultUserId];
+        if ([ZBiM createUser:newUser withTags:nil error:&error])
+        {
+            error = nil;
+            if (![ZBiM setActiveUser:newUser error:&error])
+            {
+                NSLog(@"Failed setting new user (%@) as active. Error: %@", newUser, error);
+            }
+        }
+        else
+        {
+            NSLog(@"Failed creating new user (%@). Error: %@", newUser, error);
+        }
+    }
+    
+    if (localNotification)
+    {
+        if (![ZBiM handleLocalNotification:localNotification showAlert:NO])
+        {
+            // This was not a ZBiM local notification, so the
+            // application must decide how to handle it. In the
+            // case of this sample app, just show an alert.
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"UNHANDLED: %@", localNotification.alertAction]
+                                                            message:[NSString stringWithFormat:@"UNHANDLED: %@", localNotification.alertBody]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ignore"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 #pragma mark ZBiMAdvertiserIdDelegate methods
@@ -146,6 +247,33 @@
 - (void)log:(NSString *)message severityLevel:(ZBiMSeverityLevel)severityLevel verbosityLevel:(ZBiMVerbosityLevel)verbosityLevel
 {
     NSLog(@"ZBiM Sample App: %@", message);
+}
+
+#pragma mark Background downloads related methods
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
+{
+    if ([ZBiM canHandleEventsForBackgroundURLSession:identifier])
+    {
+        [ZBiM setBackgroundSessionCompletionHandler:completionHandler];
+    }
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [ZBiM performFetchWithCompletionHandler:^(UIBackgroundFetchResult result)
+    {
+        completionHandler(result);
+    }];
+}
+
+- (UIViewController *) getTopViewController {
+    UIViewController *currentViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    while (currentViewController.presentedViewController)
+    {
+        currentViewController = (currentViewController.presentedViewController);
+    }
+    return currentViewController;
 }
 
 @end

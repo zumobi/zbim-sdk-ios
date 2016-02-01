@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -18,12 +18,21 @@
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR  THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
 
 #import "ZBiMContentHubContainerViewController.h"
+#import "SampleAppUtilities.h"
 #import "ZBiM.h"
+
+@interface ZBiMContentHubContainerViewController ()
+
+@property (nonatomic, assign) CGFloat scaleFactor;
+@property (nonatomic, strong) UIFont *smallFont;
+@property (nonatomic, strong) UIFont *regularFont;
+
+@end
 
 @implementation ZBiMContentHubContainerViewController
 {
@@ -51,27 +60,43 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     
     [self.navBar.superview addConstraints:_navBarConstraints];
 
-    _contentHub = [ZBiM presentHubWithParentView:self.contentHubContainerView
-                            parentViewController:self
-                                      completion:^(BOOL success, NSError *error) {
-                                          if (!success)
-                                          {
-                                              NSLog(@"Failed presenting an embedded content hub. Error: %@", error);
-                                          }
-                                      }];
+    if (self.uriOverride)
+    {
+        _contentHub = [ZBiM presentHubWithUri:self.uriOverride
+                                   parentView:self.contentHubContainerView
+                         parentViewController:self
+                                   completion:^(BOOL success, NSError *error) {
+                                       if (!success)
+                                       {
+                                           NSLog(@"Failed presenting an embedded content hub with URI override. Error: %@", error);
+                                       }
+                                   }];
+    }
+    else if (self.tagsOverride)
+    {
+        _contentHub = [ZBiM presentHubWithTags:self.tagsOverride
+                                    parentView:self.contentHubContainerView
+                          parentViewController:self
+                                    completion:^(BOOL success, NSError *error) {
+                                        if (!success)
+                                        {
+                                            NSLog(@"Failed presenting an embedded content hub with tags override. Error: %@", error);
+                                        }
+                                    }];
+    }
+    else
+    {
+        _contentHub = [ZBiM presentHubWithParentView:self.contentHubContainerView
+                                parentViewController:self
+                                          completion:^(BOOL success, NSError *error) {
+                                              if (!success)
+                                              {
+                                                  NSLog(@"Failed presenting an embedded content hub. Error: %@", error);
+                                              }
+                                          }];
+    }
 
     [_contentHub setScrollDelegate:self];
-    
-    self.contentHubContainerView.layer.borderWidth = 2.0f;
-    self.contentHubContainerView.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
-    
-    self.closeButton.layer.borderWidth = 1.0f;
-    self.closeButton.layer.cornerRadius = 10.0f;
-    self.closeButton.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
-    
-    self.backButton.layer.borderWidth = 1.0f;
-    self.backButton.layer.cornerRadius = 10.0f;
-    self.backButton.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
     
     if ([ZBiM colorScheme] == ZBiMColorSchemeLight)
     {
@@ -88,9 +113,41 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     // is presented in an embedded mode and the application needs
     // to adjust the parent view, e.g. hide a nav bar when showing
     // hub, but show it when article gets loaded.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleContentTypeChanged:)
-                                                 name:ZBiMContentTypeChanged object:[ZBiM class]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentTypeChanged:) name:ZBiMContentTypeChanged object:[ZBiM class]];
+    
+    self.scaleFactor = [SampleAppUtilities scaleFactor];
+    
+    [self updateFonts];
+}
+
+// For information about this method look at ZBiMViewController
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    CGFloat newScaleFactor = [SampleAppUtilities newScaleFactor:self.traitCollection];
+    
+    if (newScaleFactor != self.scaleFactor)
+    {
+        self.scaleFactor = newScaleFactor;
+        [self updateFonts];
+    }
+}
+
+- (void)updateFonts
+{
+    self.regularFont = [SampleAppUtilities regularFontWithScale:self.scaleFactor];
+    self.smallFont = [SampleAppUtilities smallFontWithScale:self.scaleFactor];
+    
+    [SampleAppUtilities setUpButton:self.closeButton :self.scaleFactor];
+    [SampleAppUtilities setUpButton:self.backButton :self.scaleFactor];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:self.regularFont forKey:NSFontAttributeName];
+    [self.tabPicker setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [self.tabPicker setContentPositionAdjustment:UIOffsetMake(0, 2) forSegmentType:UISegmentedControlSegmentAny barMetrics:UIBarMetricsDefault];
+    
+    self.contentHubContainerView.layer.borderWidth = 1.0f;
+    self.contentHubContainerView.layer.borderColor = [UIColor colorWithRed:85.0f/255.0 green:153.0f/255.0f blue:162.0f/255.0f alpha:1.0f].CGColor;
+    self.resourceTypeLabel.font = self.smallFont;
+    self.titleLabel.font = self.smallFont;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,7 +180,6 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     _navBarHiddenVConstraint = [NSString stringWithFormat:@"V:|-(-%d)-[_navBar]", (int)_navBar.frame.size.height];
 }
 
@@ -176,22 +232,22 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 }
 
 - (void)handleContentTypeChanged:(NSNotification *)notification
 {
-    NSLog(@"New content presented. URL: %@, title: %@, type: %@",
-          notification.userInfo[ZBiMResourceURL], notification.userInfo[ZBiMResourceTitle], notification.userInfo[ZBiMResourceType]);
+    NSLog(@"New content presented. URL: %@, title: %@, type: %@", notification.userInfo[ZBiMResourceURL], notification.userInfo[ZBiMResourceTitle], notification.userInfo[ZBiMResourceType]);
 
     self.resourceTypeLabel.text = notification.userInfo[ZBiMResourceType];
+    [self updateBackButton];
 
     NSString *title = notification.userInfo[ZBiMResourceTitle];
     if (title && title.length > 0)
     {
-        self.titleLabel.text = [NSString stringWithFormat:@": %@", title];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@", title];
     }
     else
     {
@@ -204,7 +260,8 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
         
         if (![NSThread isMainThread])
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
                 [self showNavBar];
             });
         }
@@ -236,7 +293,7 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
 // Content Hub, but kept the strong reference, so it can be
 // displayed again later.
 
-- (void) closeContentHub
+- (void)closeContentHub
 {
     NSError *error = nil;
     if (![_contentHub dismiss:&error])
@@ -244,6 +301,17 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
         NSLog(@"Failed dimissing Content Hub. Error: %@", error);
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)updateControls {
+    [self updateBackButton];
+}
+
+#pragma mark UIWebViewDelegate methods
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self updateBackButton];
 }
 
 #pragma mark UIScrollViewDelegate methods
@@ -388,6 +456,15 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
     }
 }
 
+- (void)updateBackButton
+{
+    if (self.tabPicker.selectedSegmentIndex == 0) {
+        self.backButton.enabled = _contentHub.canGoBack;
+    } else {
+        self.backButton.enabled = self.regularWebView.canGoBack;
+    }
+}
+
 - (IBAction)tabPickerSelectionChanged:(id)sender
 {
     if (self.tabPicker.selectedSegmentIndex == 0)
@@ -432,6 +509,8 @@ NSString * const _navBarVisibleVConstraint = @"V:|-0-[_navBar]";
         // Show the web view by adding it to the view hierarchy.
         self.regularWebView.hidden = NO;
     }
+    
+    [self updateBackButton];
 }
 
 - (void)dealloc

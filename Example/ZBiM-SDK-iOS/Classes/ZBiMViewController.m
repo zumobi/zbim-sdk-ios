@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,43 +25,104 @@
 #import "ZBiMViewController.h"
 #import "ZBiM.h"
 #import "ZBiMContentHubContainerViewController.h"
+#import "ZBiMConfigureContentHubViewController.h"
 #import "ZBiMCreateNewUserViewController.h"
+#import "ZBiMUserManagementViewController.h"
 #import "ZBiMAppDelegate.h"
+#import "ZBiMContentProviderConfigViewController.h"
+#import "ZBiMShowcasesViewController.h"
+#import "SampleAppUtilities.h"
 
-static NSArray *allTags;
+NSString *const ZBiMSimulatorLocationId = @"simulator";
+
+@interface ZBiMViewController ()
+
+@property (nonatomic, assign) CGFloat scaleFactor;
+@property (nonatomic, strong) UIFont *largeFont;
+
+@end
+
+#pragma message "Uncomment one of the following to use URI or tag overrides when showing Content Hub."
+// #define URI_OVERRIDE @"zbimdb://zumobi/about/linkedin/the-definitive-book-on-customer-centric-business-management.html"
+// #define TAGS_OVERRIDE @"tag1,tag2,tag3"
 
 @implementation ZBiMViewController
 {
     NSArray *_allUsers;
     NSString *_pickerSelection;
-}
-
-#pragma message "In order to see content tailoring in action, change the following tag array to reflect the set of tags used in the content being served."
-+(void)initialize
-{
-    allTags = [NSArray arrayWithObjects:@"tag1", @"tag2", @"tag3", nil];
+    NSString *_uriOverride;
+    NSArray *_tagsOverride;
+    CLLocationManager *_locationManager;
+    ZBiMLocationServiceCallback _locationServiceCallback;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dbDownloadProgressChanged:) name:ZBiMDBDownloadProgressChanged object:nil];
     
-    self.progressView.progress = 0.0f;
+#ifdef URI_OVERRIDE
+    _uriOverride = URI_OVERRIDE;
+#endif
     
-    self.showContentHubButton.layer.borderWidth = 1.0f;
-    self.showContentHubButton.layer.cornerRadius = 10.0f;
-    self.showContentHubButton.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
+#ifdef TAGS_OVERRIDE
+    NSString *tagsOverrideRawValue = TAGS_OVERRIDE;
+    if (tagsOverrideRawValue)
+    {
+        _tagsOverride = [tagsOverrideRawValue componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
+    }
+#endif
     
-    self.switchUserPickerContainerView.hidden = YES;
+    if (_uriOverride && _tagsOverride)
+    {
+        NSLog(@"URI override and tags override are mutually exclusive. Please use one OR the other. Ignoring tags override in favor of URI override as the latter is more specific.");
+        _tagsOverride = nil;
+    }
+    
+    [ZBiM setLocationServiceDelegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
+    self.progressView.progress = 0.0f;
+    self.progressView.trackTintColor = [UIColor whiteColor];
+
     _allUsers = [ZBiM getAllUsers];
+    
+    self.scaleFactor = [SampleAppUtilities scaleFactor];
+    
+    [self updateFonts];
+}
+
+// Using traitCollection is the right way to determine scaling as it's based on
+// size classes, but the property and the corresponding callback method were introduced
+// in iOS 8. When running on iOS 7 we rely on viewDidLoad to set the scaleFactor
+// as the following method will not be called.
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    CGFloat newScaleFactor = [SampleAppUtilities newScaleFactor:self.traitCollection];
+    
+    if (newScaleFactor != self.scaleFactor)
+    {
+        self.scaleFactor = newScaleFactor;
+        [self updateFonts];
+    }
+}
+
+- (void)updateFonts
+{
+    self.largeFont = [SampleAppUtilities largeFontWithScale:self.scaleFactor];
+    
+    [SampleAppUtilities setUpButton:self.userManagmentButton :self.scaleFactor];
+    [SampleAppUtilities setUpButton:self.configureContentProviderButton :self.scaleFactor];
+    [SampleAppUtilities setUpButton:self.showcasesButton :self.scaleFactor];
+    [SampleAppUtilities setUpButton:self.configureContentHubButton :self.scaleFactor];
+    [SampleAppUtilities setUpButton:self.showContentHubButton :self.scaleFactor];
+    
+    self.showContentHubButton.titleLabel.font = self.largeFont;
 }
 
 - (IBAction)showContentHubButtonPressed:(id)sender
@@ -72,17 +133,10 @@ static NSArray *allTags;
         [activeUserNotSetAlertView show];
         return;
     }
-
-    if (self.syncModePicker.selectedSegmentIndex == 0)
-    {
-        [ZBiM setSyncMode:ZBiMSyncNonBlocking];
-    }
-    else
-    {
-        [ZBiM setSyncMode:ZBiMSyncBlocking];
-    }
     
-    if (self.colorSchemePicker.selectedSegmentIndex == 0)
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([standardUserDefaults integerForKey:ColorSchemeModeKey] == 0)
     {
         [ZBiM setColorScheme:ZBiMColorSchemeDark];
     }
@@ -91,22 +145,46 @@ static NSArray *allTags;
         [ZBiM setColorScheme:ZBiMColorSchemeLight];
     }
     
-    if (self.screenModePicker.selectedSegmentIndex == 0)
+    if ([standardUserDefaults integerForKey:PresentationModeKey] == 0)
     {
-        [ZBiM presentHub:^(BOOL success, NSError *error) {
-            if (!success)
-            {
-                NSLog(@"Failed presenting content hub. Error: %@", error);
-            }
-        }];
+        if (_uriOverride)
+        {
+            [ZBiM presentHubWithUri:_uriOverride completion:^(BOOL success, NSError *error) {
+                if (!success)
+                {
+                    NSLog(@"Failed presenting content hub with URI override. Error: %@", error);
+                }
+            }];
+        }
+        else if (_tagsOverride)
+        {
+            [ZBiM presentHubWithTags:_tagsOverride completion:^(BOOL success, NSError *error) {
+                if (!success)
+                {
+                    NSLog(@"Failed presenting content hub with tags override. Error: %@", error);
+                }
+            }];
+        }
+        else
+        {
+            [ZBiM presentHub:^(BOOL success, NSError *error) {
+                if (!success)
+                {
+                    NSLog(@"Failed presenting content hub. Error: %@", error);
+                }
+            }];
+        }
     }
     else
     {
-        ZBiMContentHubContainerViewController *contentHubContainer = [[ZBiMContentHubContainerViewController alloc] initWithNibName:@"ZBiMContentHubContainerViewController" bundle:nil];
+        ZBiMContentHubContainerViewController *contentHubContainer = [self.storyboard instantiateViewControllerWithIdentifier:@"ZBiMContentHubContainerViewController"];
+        contentHubContainer.uriOverride = _uriOverride;
+        contentHubContainer.tagsOverride = _tagsOverride;
+        
         [self presentViewController:contentHubContainer animated:YES completion:nil];
     }
     
-    if (self.contentSourcePicker.selectedSegmentIndex == 0)
+    if ([standardUserDefaults integerForKey:NetworkModeKey] == 0)
     {
         [ZBiM setContentSource:ZBiMContentSourceExternalAllowed];
     }
@@ -116,46 +194,37 @@ static NSArray *allTags;
     }
 }
 
-- (IBAction)createNewUserPressed:(id)sender
+- (IBAction)configureContentHub:(id)sender
 {
-    ZBiMCreateNewUserViewController *createNewUserViewController = [[ZBiMCreateNewUserViewController alloc] initWithNibName:@"ZBiMCreateNewUserViewController" bundle:nil];
-    [self presentViewController:createNewUserViewController animated:YES completion:nil];
-    [createNewUserViewController showAvailableTags:allTags];
-}
-
-- (IBAction)switchUser:(id)sender
-{
-    if (!_allUsers || _allUsers.count < 2)
-    {
-        UIAlertView *activeUserNotSetAlertView = [[UIAlertView alloc] initWithTitle:@"Cannot Switch User" message:@"You must create at least two users to be able to switch." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [activeUserNotSetAlertView show];
-        return;
-    }
+    ZBiMConfigureContentHubViewController *configureContentHubViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ZBiMConfigureContentHubViewController"];
     
-    [self.switchUserPickerView reloadAllComponents];
-    self.switchUserPickerContainerView.hidden = NO;
+    [configureContentHubViewController.navigationItem setHidesBackButton:YES animated:NO];
 
-    // Make the picker have the current active user (if set)
-    // as the selected item.
-    _pickerSelection = [ZBiM activeUser];
-    if (_pickerSelection)
-    {
-        [self.switchUserPickerView selectRow:[_allUsers indexOfObject:_pickerSelection]
-                                 inComponent:0
-                                    animated:YES];
-    }
-    else
-    {
-        _pickerSelection = [_allUsers objectAtIndex:0];
-        [self.switchUserPickerView selectRow:0
-                                 inComponent:0
-                                    animated:YES];
-    }
+    [self.navigationController pushViewController:configureContentHubViewController animated:NO];
 }
 
-- (IBAction)forceDBRefresh:(id)sender
+- (IBAction)configureContentProviderButtonPressed:(id)sender
 {
-    [ZBiM refreshContentSource];
+    UIAlertView *activeUserNotSetAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"To configure a new content provider, please select OK and restart app." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    [activeUserNotSetAlertView show];
+}
+
+- (IBAction)showUserManagementView:(id)sender
+{
+    ZBiMUserManagementViewController *userManagementViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ZBiMUserManagementViewController"];
+    
+    [userManagementViewController.navigationItem setHidesBackButton:YES animated:NO];
+    
+    [self.navigationController pushViewController:userManagementViewController animated:NO];
+}
+
+- (IBAction)showcasesButtonPressed:(id)sender
+{
+    ZBiMShowcasesViewController *showcasesViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ZBiMShowcasesViewController"];
+    
+    [showcasesViewController.navigationItem setHidesBackButton:YES animated:NO];
+    
+    [self.navigationController pushViewController:showcasesViewController animated:NO];
 }
 
 - (void)dbDownloadProgressChanged:(NSNotification *)notification
@@ -163,74 +232,93 @@ static NSArray *allTags;
     self.progressView.progress = [notification.userInfo[@"progress"] floatValue] / 100.0f;
 }
 
-- (IBAction)pickerSelectionDone:(id)sender
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [ZBiM setActiveUser:_pickerSelection error:nil];
-    self.switchUserPickerContainerView.hidden = YES;
-}
-
-- (IBAction)pickerSelectionCancelled:(id)sender
-{
-    _pickerSelection = nil;
-    self.switchUserPickerContainerView.hidden = YES;
-}
-
-#pragma mark UIPickerViewDataSource
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return _allUsers.count;
-}
-
-#pragma mark UIPickerViewDelegate
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    return 300.0f;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 44.0f;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (!_allUsers || row < 0 || row >= _allUsers.count)
+    if (buttonIndex != alertView.cancelButtonIndex)
     {
-        return nil;
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setObject:@(YES) forKey:ShowConfigOnStartupSettingKey];
+        [standardUserDefaults synchronize];
+    }
+}
+
+#pragma mark ZBiM Location Service Delegate
+
+- (void)fetchLocation:(ZBiMLocationServiceCallback)callback
+{
+#if TARGET_OS_SIMULATOR
+    callback(nil, ZBiMSimulatorLocationId);
+#else
+    _locationManager = [CLLocationManager new];
+    
+    if (_locationManager.location) {
+        callback(_locationManager.location, nil);
+    } else {
+        _locationServiceCallback = callback;
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+
+        if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorized ||
+            CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse)
+        {
+            [_locationManager startUpdatingLocation];
+        }
+        else
+        {
+            [self authorizeLocationService];
+        }
+    }
+#endif
+}
+
+#pragma mark CLLocationManager Delegate
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [manager stopUpdatingLocation];
+    
+    if (_locationServiceCallback) {
+        _locationServiceCallback([locations lastObject], nil);
+        _locationServiceCallback = nil;
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        return;
     }
     
-    return [_allUsers objectAtIndex:row];
+    if (!_locationServiceCallback) {
+        return;
+    }
+    
+    if (CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorized ||
+        CLLocationManager.authorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [_locationManager startUpdatingLocation];
+    } else {
+        _locationServiceCallback(nil, nil);
+        _locationServiceCallback = nil;
+    }
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    _pickerSelection = [_allUsers objectAtIndex:row];
-}
+#pragma mark Location related methods
 
-#pragma mark Orientation related methods
-
-- (BOOL)shouldAutorotate
+- (CLLocationManager *)authorizeLocationService
 {
-    return YES;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
--(NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAll;
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    {
+        // In iOS8+, you need to explicitly ask for authorization
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    else
+    {
+        // In iOS7-, when you start location services, the OS asks for authorization
+        [_locationManager startUpdatingLocation];
+    }
+    
+    return _locationManager;
 }
 
 @end

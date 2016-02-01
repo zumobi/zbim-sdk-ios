@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,63 +23,71 @@
  */
 
 #import "ZBiMCreateNewUserViewController.h"
+#import "ZBiMAppDelegate.h"
 #import "ZBiM.h"
+#import "SampleAppUtilities.h"
+
+@interface ZBiMCreateNewUserViewController()
+
+@property (nonatomic, assign) CGFloat scaleFactor;
+@property (nonatomic, strong) UIFont *regularFont;
+
+@end
 
 @implementation ZBiMCreateNewUserViewController
 {
+    NSArray *array;
     NSMutableDictionary *_tagSelection;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.userNameTextField.text = [ZBiM generateDefaultUserId];
-    self.createUserButton.layer.borderWidth = 1.0f;
-    self.createUserButton.layer.cornerRadius = 10.0f;
-    self.createUserButton.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
     
-    self.cancelButton.layer.borderWidth = 1.0f;
-    self.cancelButton.layer.cornerRadius = 10.0f;
-    self.cancelButton.layer.borderColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f].CGColor;
+    array = [NSArray arrayWithObjects:(@"Food"), (@"Activity"), (@"Drinks"), (@"Pool"), (@"Inside"), (@"Outside"), nil];
+    
+    self.scaleFactor = [SampleAppUtilities scaleFactor];
+    
+    [self updateFonts];
 }
 
-- (void)showAvailableTags:(NSArray *)tags
+- (void)viewDidAppear:(BOOL)animated
 {
-    NSAssert(!_tagSelection, @"Resetting list of applicable tags is not supported.");
+    [super viewDidAppear:animated];
     
-    _tagSelection = [NSMutableDictionary dictionary];
+    [self.navigationItem setHidesBackButton:NO animated:YES];
+}
+
+
+// For information about this method look at ZBiMViewController
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+    CGFloat newScaleFactor = [SampleAppUtilities newScaleFactor:self.traitCollection];
     
-    NSUInteger tagIndex = 0;
-    for (NSString *tag in tags)
+    if (newScaleFactor != self.scaleFactor)
     {
-        NSAssert(46 * tagIndex < self.view.frame.size.height - 31,
-                 @"Trying to display more tags than would fit on screen. Please limit number of tags.");
-
-        UISwitch *checkbox = [[UISwitch alloc] initWithFrame:CGRectMake(25.0f, 46.0f * tagIndex, 51.0f, 31.0f)];
-        checkbox.onTintColor = [UIColor colorWithRed:228.0f/255.0 green:89.0f/255.0f blue:37.0f / 255.0f alpha:1.0f];
-        [self.checkboxesContainer addSubview:checkbox];
-        
-        UILabel *tagName = [[UILabel alloc] initWithFrame:CGRectMake(85.0f, 46.0f * tagIndex, 150.0f, 31.0f)];
-        tagName.textColor = [UIColor blackColor];
-        tagName.text = tag;
-        [self.checkboxesContainer addSubview:tagName];
-    
-        [_tagSelection setObject:checkbox forKey:tag];
-
-        tagIndex++;
+        self.scaleFactor = newScaleFactor;
+        [self updateFonts];
     }
+}
+
+- (void)updateFonts
+{
+    self.regularFont = [SampleAppUtilities regularFontWithScale:self.scaleFactor];
     
-    self.checkboxesContainer.contentSize = CGSizeMake(self.checkboxesContainer.frame.size.width, 46.0f * tagIndex);
+    [SampleAppUtilities setUpButton:self.createUserButton :self.scaleFactor];
+    
+    self.userNameDescription.font = self.regularFont;;
+    self.userNameTextField.font = self.regularFont;;
+    self.userNameTextField.text = [ZBiM generateDefaultUserId];
 }
 
 - (IBAction)createNewUserButtonPressed:(id)sender
 {
     NSError *error = nil;
-    
     NSMutableArray *tags = [NSMutableArray array];
-    
-    for (NSString *tag in _tagSelection) {
+    for (NSString *tag in _tagSelection)
+    {
         if ([(UISwitch *)_tagSelection[tag] isOn])
         {
             [tags addObject:tag];
@@ -90,13 +98,22 @@
     // or it can pass nil and have ZBiM SDK generate one on the
     // app's behlaf (or use a previously generated one).
     NSString *userId = self.userNameTextField.text;
-    if (![ZBiM createUser:userId withTags:tags error:&error])
+    if (![ZBiM createUser:userId withTags:@[] error:&error])
     {
-        if (error.code != ZBiMErrorUserAlreadyExists)
+        if (error.code == ZBiMErrorUserAlreadyExists)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username Already Exists"
+                                                            message:@"Would you like to switch to the pre-existing user profile?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Yes"
+                                                  otherButtonTitles:@"No", nil];
+            [alert show];
+        }
+        else
         {
             NSLog(@"Failed creating user with tags: %@", error);
-            return;
         }
+        return;
     }
     
     if (![ZBiM setActiveUser:userId error:&error])
@@ -104,12 +121,7 @@
         NSLog(@"Failed setting active user: %@", error);
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)cancelButtonPressed:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)editingEnded:(id)sender
@@ -127,9 +139,26 @@
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+#pragma Mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        NSError *error = nil;
+        NSString *userId = self.userNameTextField.text;
+        if (![ZBiM setActiveUser:userId error:&error])
+        {
+            NSLog(@"Failed setting active user: %@", error);
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

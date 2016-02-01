@@ -5,16 +5,18 @@
 	<key>appID</key>
 	<string>4afdf695-b143-4ea0-8741-c3cb8d15e649</string>
 	<key>dbServiceUrl</key>
-	<string>https://zpe.zumobi.net/apps/4afdf695-b143-4ea0-8741-c3cb8d15e649/1-0-0/db_url</string>
+	<string>https://zpe.zumobi.net/apps/4afdf695-b143-4ea0-8741-c3cb8d15e649/tagdemo-1/db_url</string>
 	<key>metricsReportingQueueId</key>
 	<string>zumobi</string>
 	<key>poolId</key>
-	<string>dXMtZWFzdC0xOjhjZjZlYjc1LWU3NDYtNDQ4My05NmJhLWQ3YzM3MmZmOGQ5ZA==</string>
+	<string>us-east-1:8cf6eb75-e746-4483-96ba-d7c372ff8d9d</string>
 	<key>roleA</key>
-	<string>YXJuOmF3czppYW06OjQ4MzI3NDIyMjc2MTpyb2xlL0NvZ25pdG9fenVtb2JpQXV0aF9Sb2xl</string>
+	<string>arn:aws:iam::483274222761:role/Cognito_zumobiAuth_Role</string>
 	<key>roleUA</key>
-	<string>YXJuOmF3czppYW06OjQ4MzI3NDIyMjc2MTpyb2xlL0NvZ25pdG9fenVtb2JpVW5hdXRoX1JvbGU=</string>
+	<string>arn:aws:iam::483274222761:role/Cognito_zumobiUnauth_Role</string>
 	<key>accountID</key>
 	<string>483274222761</string>
+	<key>regionName</key>
+	<string>us-east-1</string>
 </dict>
 </plist>

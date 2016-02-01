@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2015 Zumobi Inc.
+ * Copyright (c) 2014-2016 Zumobi Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 #import <UIKit/UIKit.h>
 #import "ZBiM.h"
 
-@interface ZBiMContentHubContainerViewController : UIViewController<UIScrollViewDelegate, ZBiMContentHubContainerDelegate>
+@interface ZBiMContentHubContainerViewController : UIViewController<UIScrollViewDelegate, UIWebViewDelegate, ZBiMContentHubContainerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView *contentHubContainerView;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
@@ -35,6 +35,8 @@
 @property (nonatomic, weak) IBOutlet UIWebView *regularWebView;
 @property (nonatomic, weak) IBOutlet UILabel *resourceTypeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) NSString *uriOverride;
+@property (nonatomic, strong) NSArray *tagsOverride;
 
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)closeButtonPressed:(id)sender;

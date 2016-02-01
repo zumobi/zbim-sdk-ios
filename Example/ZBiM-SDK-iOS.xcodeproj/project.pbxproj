@@ -7,31 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33FC10FA1C597C2600E7A39B /* ZBiMStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FC10F91C597C2600E7A39B /* ZBiMStoryboard.storyboard */; };
+		33FC10FC1C597CAF00E7A39B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FC10FB1C597CAF00E7A39B /* Images.xcassets */; };
+		33FC111E1C597CF000E7A39B /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC10FE1C597CF000E7A39B /* CustomNavigationBar.m */; };
+		33FC111F1C597CF000E7A39B /* SampleAppUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11001C597CF000E7A39B /* SampleAppUtilities.m */; };
+		33FC11201C597CF000E7A39B /* UINavigationController+CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11021C597CF000E7A39B /* UINavigationController+CompletionHandler.m */; };
+		33FC11211C597CF000E7A39B /* ZBiMConfigureContentHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11041C597CF000E7A39B /* ZBiMConfigureContentHubViewController.m */; };
+		33FC11221C597CF000E7A39B /* ZBiMContentProviderConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11061C597CF000E7A39B /* ZBiMContentProviderConfigViewController.m */; };
+		33FC11241C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC110A1C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.m */; };
+		33FC11251C597CF000E7A39B /* ZBiMInitalizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC110C1C597CF000E7A39B /* ZBiMInitalizerViewController.m */; };
+		33FC11261C597CF000E7A39B /* ZBiMProductPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC110E1C597CF000E7A39B /* ZBiMProductPageViewController.m */; };
+		33FC11291C597CF000E7A39B /* ZBiMShowcasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11131C597CF000E7A39B /* ZBiMShowcasesViewController.m */; };
+		33FC112A1C597CF000E7A39B /* ZBiMSwitchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11151C597CF000E7A39B /* ZBiMSwitchUserViewController.m */; };
+		33FC112B1C597CF000E7A39B /* ZBiMUserManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11171C597CF000E7A39B /* ZBiMUserManagementTableViewCell.m */; };
+		33FC112C1C597CF000E7A39B /* ZBiMUserManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11191C597CF000E7A39B /* ZBiMUserManagementViewController.m */; };
+		33FC11301C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33FC112F1C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf */; };
+		33FC11351C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FC11321C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		7E08422C30DA2B30795273E6 /* libPods-ZBiMSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE8D012A097199B6A4E593 /* libPods-ZBiMSampleApp.a */; };
 		B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */; };
 		B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */; };
 		B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */; };
 		B7AE85971A82A35B00F02F23 /* ZBiMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */; };
 		B7AE85981A82A35B00F02F23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85801A82A35B00F02F23 /* InfoPlist.strings */; };
-		B7AE85991A82A35B00F02F23 /* ZBiMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */; };
-		B7AE859F1A82A35B00F02F23 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */; };
-		B7AE85A01A82A35B00F02F23 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858C1A82A35B00F02F23 /* Default.png */; };
-		B7AE85A11A82A35B00F02F23 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858D1A82A35B00F02F23 /* Default@2x.png */; };
-		B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */; };
-		B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */; };
 		B7AE85A41A82A35B00F02F23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85901A82A35B00F02F23 /* main.m */; };
 		B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85A91A82ABF200F02F23 /* pubkey.der */; };
 		B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33FC10F91C597C2600E7A39B /* ZBiMStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZBiMStoryboard.storyboard; sourceTree = "<group>"; };
+		33FC10FB1C597CAF00E7A39B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		33FC10FD1C597CF000E7A39B /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		33FC10FE1C597CF000E7A39B /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
+		33FC10FF1C597CF000E7A39B /* SampleAppUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleAppUtilities.h; sourceTree = "<group>"; };
+		33FC11001C597CF000E7A39B /* SampleAppUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleAppUtilities.m; sourceTree = "<group>"; };
+		33FC11011C597CF000E7A39B /* UINavigationController+CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CompletionHandler.h"; sourceTree = "<group>"; };
+		33FC11021C597CF000E7A39B /* UINavigationController+CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CompletionHandler.m"; sourceTree = "<group>"; };
+		33FC11031C597CF000E7A39B /* ZBiMConfigureContentHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMConfigureContentHubViewController.h; sourceTree = "<group>"; };
+		33FC11041C597CF000E7A39B /* ZBiMConfigureContentHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMConfigureContentHubViewController.m; sourceTree = "<group>"; };
+		33FC11051C597CF000E7A39B /* ZBiMContentProviderConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMContentProviderConfigViewController.h; sourceTree = "<group>"; };
+		33FC11061C597CF000E7A39B /* ZBiMContentProviderConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMContentProviderConfigViewController.m; sourceTree = "<group>"; };
+		33FC11091C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMEmbeddedContentHubViewController.h; sourceTree = "<group>"; };
+		33FC110A1C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMEmbeddedContentHubViewController.m; sourceTree = "<group>"; };
+		33FC110B1C597CF000E7A39B /* ZBiMInitalizerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMInitalizerViewController.h; sourceTree = "<group>"; };
+		33FC110C1C597CF000E7A39B /* ZBiMInitalizerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMInitalizerViewController.m; sourceTree = "<group>"; };
+		33FC110D1C597CF000E7A39B /* ZBiMProductPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMProductPageViewController.h; sourceTree = "<group>"; };
+		33FC110E1C597CF000E7A39B /* ZBiMProductPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMProductPageViewController.m; sourceTree = "<group>"; };
+		33FC11121C597CF000E7A39B /* ZBiMShowcasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMShowcasesViewController.h; sourceTree = "<group>"; };
+		33FC11131C597CF000E7A39B /* ZBiMShowcasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMShowcasesViewController.m; sourceTree = "<group>"; };
+		33FC11141C597CF000E7A39B /* ZBiMSwitchUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMSwitchUserViewController.h; sourceTree = "<group>"; };
+		33FC11151C597CF000E7A39B /* ZBiMSwitchUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMSwitchUserViewController.m; sourceTree = "<group>"; };
+		33FC11161C597CF000E7A39B /* ZBiMUserManagementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMUserManagementTableViewCell.h; sourceTree = "<group>"; };
+		33FC11171C597CF000E7A39B /* ZBiMUserManagementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMUserManagementTableViewCell.m; sourceTree = "<group>"; };
+		33FC11181C597CF000E7A39B /* ZBiMUserManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMUserManagementViewController.h; sourceTree = "<group>"; };
+		33FC11191C597CF000E7A39B /* ZBiMUserManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMUserManagementViewController.m; sourceTree = "<group>"; };
+		33FC112F1C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HVD Fonts - BrandonGrotesque-Medium.otf"; sourceTree = "<group>"; };
+		33FC11321C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZBiMUserManagementTableViewCell.xib; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ZBiMSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZBiMSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		628E5317615A00481EF0FF96 /* Pods-ZBiMSampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZBiMSampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZBiMSampleApp/Pods-ZBiMSampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMAppDelegate.h; sourceTree = "<group>"; };
 		B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMAppDelegate.m; sourceTree = "<group>"; };
 		B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMContentHubContainerViewController.h; sourceTree = "<group>"; };
@@ -41,18 +81,14 @@
 		B7AE857D1A82A35B00F02F23 /* ZBiMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBiMViewController.h; sourceTree = "<group>"; };
 		B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBiMViewController.m; sourceTree = "<group>"; };
 		B7AE85811A82A35B00F02F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		B7AE85831A82A35B00F02F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ZBiMViewController.xib; sourceTree = "<group>"; };
-		B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B7AE858C1A82A35B00F02F23 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		B7AE858D1A82A35B00F02F23 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZBiMContentHubContainerViewController.xib; sourceTree = "<group>"; };
-		B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZBiMCreateNewUserViewController.xib; sourceTree = "<group>"; };
 		B7AE85901A82A35B00F02F23 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AE85911A82A35B00F02F23 /* ZBiMSampleApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZBiMSampleApp-Info.plist"; sourceTree = "<group>"; };
 		B7AE85921A82A35B00F02F23 /* ZBiMSampleApp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZBiMSampleApp-Prefix.pch"; sourceTree = "<group>"; };
 		B7AE85A91A82ABF200F02F23 /* pubkey.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = pubkey.der; sourceTree = "<group>"; };
 		B7AE85B11A82AC0C00F02F23 /* libPods-ZBiMSampleApp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ZBiMSampleApp.a"; path = "Pods/build/Debug-iphoneos/libPods-ZBiMSampleApp.a"; sourceTree = "<group>"; };
 		B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zbimconfig.plist; sourceTree = "<group>"; };
+		C2BE8D012A097199B6A4E593 /* libPods-ZBiMSampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZBiMSampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD38C10CE29C710F8C22A8D1 /* Pods-ZBiMSampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZBiMSampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZBiMSampleApp/Pods-ZBiMSampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +99,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
+				7E08422C30DA2B30795273E6 /* libPods-ZBiMSampleApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +112,7 @@
 				6003F593195388D20070C39A /* ZBiM-SDK-iOS */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
+				95041DDD88D62459767BF920 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +132,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
+				C2BE8D012A097199B6A4E593 /* libPods-ZBiMSampleApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,15 +151,48 @@
 			path = "ZBiM-SDK-iOS";
 			sourceTree = "<group>";
 		};
+		95041DDD88D62459767BF920 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD38C10CE29C710F8C22A8D1 /* Pods-ZBiMSampleApp.debug.xcconfig */,
+				628E5317615A00481EF0FF96 /* Pods-ZBiMSampleApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B7AE85741A82A35B00F02F23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				33FC10FD1C597CF000E7A39B /* CustomNavigationBar.h */,
+				33FC10FE1C597CF000E7A39B /* CustomNavigationBar.m */,
+				33FC10FF1C597CF000E7A39B /* SampleAppUtilities.h */,
+				33FC11001C597CF000E7A39B /* SampleAppUtilities.m */,
+				33FC11011C597CF000E7A39B /* UINavigationController+CompletionHandler.h */,
+				33FC11021C597CF000E7A39B /* UINavigationController+CompletionHandler.m */,
 				B7AE85771A82A35B00F02F23 /* ZBiMAppDelegate.h */,
 				B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */,
+				33FC11031C597CF000E7A39B /* ZBiMConfigureContentHubViewController.h */,
+				33FC11041C597CF000E7A39B /* ZBiMConfigureContentHubViewController.m */,
 				B7AE85791A82A35B00F02F23 /* ZBiMContentHubContainerViewController.h */,
 				B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */,
+				33FC11051C597CF000E7A39B /* ZBiMContentProviderConfigViewController.h */,
+				33FC11061C597CF000E7A39B /* ZBiMContentProviderConfigViewController.m */,
 				B7AE857B1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.h */,
 				B7AE857C1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m */,
+				33FC11091C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.h */,
+				33FC110A1C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.m */,
+				33FC110B1C597CF000E7A39B /* ZBiMInitalizerViewController.h */,
+				33FC110C1C597CF000E7A39B /* ZBiMInitalizerViewController.m */,
+				33FC110D1C597CF000E7A39B /* ZBiMProductPageViewController.h */,
+				33FC110E1C597CF000E7A39B /* ZBiMProductPageViewController.m */,
+				33FC11121C597CF000E7A39B /* ZBiMShowcasesViewController.h */,
+				33FC11131C597CF000E7A39B /* ZBiMShowcasesViewController.m */,
+				33FC11141C597CF000E7A39B /* ZBiMSwitchUserViewController.h */,
+				33FC11151C597CF000E7A39B /* ZBiMSwitchUserViewController.m */,
+				33FC11161C597CF000E7A39B /* ZBiMUserManagementTableViewCell.h */,
+				33FC11171C597CF000E7A39B /* ZBiMUserManagementTableViewCell.m */,
+				33FC11181C597CF000E7A39B /* ZBiMUserManagementViewController.h */,
+				33FC11191C597CF000E7A39B /* ZBiMUserManagementViewController.m */,
 				B7AE857D1A82A35B00F02F23 /* ZBiMViewController.h */,
 				B7AE857E1A82A35B00F02F23 /* ZBiMViewController.m */,
 			);
@@ -131,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				B7AE85801A82A35B00F02F23 /* InfoPlist.strings */,
-				B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -139,11 +210,9 @@
 		B7AE858A1A82A35B00F02F23 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B7AE858B1A82A35B00F02F23 /* Default-568h@2x.png */,
-				B7AE858C1A82A35B00F02F23 /* Default.png */,
-				B7AE858D1A82A35B00F02F23 /* Default@2x.png */,
-				B7AE858E1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib */,
-				B7AE858F1A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib */,
+				33FC10F91C597C2600E7A39B /* ZBiMStoryboard.storyboard */,
+				33FC11321C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib */,
+				33FC10FB1C597CAF00E7A39B /* Images.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -151,6 +220,7 @@
 		B7AE85A61A82ABF200F02F23 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				33FC112F1C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf */,
 				B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */,
 				B7AE85A91A82ABF200F02F23 /* pubkey.der */,
 			);
@@ -164,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ZBiMSampleApp" */;
 			buildPhases = (
+				DB81110038BAD6087B2AF46C /* Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				1CEBA80A93CF8DF33BFF7C93 /* Embed Pods Frameworks */,
+				CDD3523B4972B921813DF746 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,11 +257,16 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ZBI;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Daniel Clark";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = RJQEDJVABA;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -215,19 +293,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7AE85A01A82A35B00F02F23 /* Default.png in Resources */,
-				B7AE85A11A82A35B00F02F23 /* Default@2x.png in Resources */,
-				B7AE85991A82A35B00F02F23 /* ZBiMViewController.xib in Resources */,
+				33FC11301C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf in Resources */,
 				B7AE85981A82A35B00F02F23 /* InfoPlist.strings in Resources */,
-				B7AE859F1A82A35B00F02F23 /* Default-568h@2x.png in Resources */,
+				33FC11351C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib in Resources */,
+				33FC10FC1C597CAF00E7A39B /* Images.xcassets in Resources */,
 				B7AE85BE1A82DA8400F02F23 /* zbimconfig.plist in Resources */,
-				B7AE85A21A82A35B00F02F23 /* ZBiMContentHubContainerViewController.xib in Resources */,
-				B7AE85A31A82A35B00F02F23 /* ZBiMCreateNewUserViewController.xib in Resources */,
 				B7AE85AE1A82ABF200F02F23 /* pubkey.der in Resources */,
+				33FC10FA1C597C2600E7A39B /* ZBiMStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CEBA80A93CF8DF33BFF7C93 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZBiMSampleApp/Pods-ZBiMSampleApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDD3523B4972B921813DF746 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZBiMSampleApp/Pods-ZBiMSampleApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB81110038BAD6087B2AF46C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6003F586195388D20070C39A /* Sources */ = {
@@ -235,10 +359,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */,
+				33FC11251C597CF000E7A39B /* ZBiMInitalizerViewController.m in Sources */,
 				B7AE85971A82A35B00F02F23 /* ZBiMViewController.m in Sources */,
+				33FC11241C597CF000E7A39B /* ZBiMEmbeddedContentHubViewController.m in Sources */,
+				33FC11201C597CF000E7A39B /* UINavigationController+CompletionHandler.m in Sources */,
+				33FC11261C597CF000E7A39B /* ZBiMProductPageViewController.m in Sources */,
+				33FC11221C597CF000E7A39B /* ZBiMContentProviderConfigViewController.m in Sources */,
 				B7AE85961A82A35B00F02F23 /* ZBiMCreateNewUserViewController.m in Sources */,
 				B7AE85A41A82A35B00F02F23 /* main.m in Sources */,
+				33FC111F1C597CF000E7A39B /* SampleAppUtilities.m in Sources */,
+				33FC112A1C597CF000E7A39B /* ZBiMSwitchUserViewController.m in Sources */,
+				33FC112C1C597CF000E7A39B /* ZBiMUserManagementViewController.m in Sources */,
+				33FC11211C597CF000E7A39B /* ZBiMConfigureContentHubViewController.m in Sources */,
+				33FC111E1C597CF000E7A39B /* CustomNavigationBar.m in Sources */,
+				33FC112B1C597CF000E7A39B /* ZBiMUserManagementTableViewCell.m in Sources */,
 				B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */,
+				33FC11291C597CF000E7A39B /* ZBiMShowcasesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,14 +387,6 @@
 				B7AE85811A82A35B00F02F23 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B7AE85821A82A35B00F02F23 /* ZBiMViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B7AE85831A82A35B00F02F23 /* en */,
-			);
-			name = ZBiMViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -282,6 +410,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -338,6 +467,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD38C10CE29C710F8C22A8D1 /* Pods-ZBiMSampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -347,6 +477,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zumobi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -354,6 +485,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 628E5317615A00481EF0FF96 /* Pods-ZBiMSampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -363,6 +495,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ZBiM-SDK-iOS/ZBiMSampleApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zumobi.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
