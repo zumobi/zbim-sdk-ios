@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "ZBiM-SDK-iOS"
-    s.version          = "1.2"
+    s.version          = "1.3"
     s.summary          = "The ZBiM SDK for iOS handles content marketing in your app"
     s.description      = <<-DESC
                        The ZBiM SDK for iOS handles all the issues surrounding getting content securely into your existing application. The SDK
@@ -20,7 +20,8 @@ Pod::Spec.new do |s|
     s.resource = 'Pod/Resources/zbimResources.bundle'
     s.source_files = 'Pod/Classes/*.{h,m}', 'Pod/Classes/**/*.{h,m}'
     s.public_header_files = 'Pod/Classes/*.h'
-    s.frameworks = 'Accounts','AdSupport','AVFoundation','AVKit','CoreLocation','CoreMedia','EventKit','EventKitUI','Foundation','MessageUI','PassKit','Security','Social','StoreKit','SystemConfiguration','Twitter','UIKit'
+    s.frameworks = 'Accounts','AdSupport','AVFoundation','AVKit','CoreGraphics','CoreLocation','CoreMedia','EventKit','EventKitUI','Foundation','MessageUI','PassKit','QuartzCore','Security','Social','StoreKit','SystemConfiguration','Twitter','UIKit'
+
     s.library = 'sqlite3', 'z'
 
     s.dependencies = {

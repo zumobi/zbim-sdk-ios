@@ -1,5 +1,10 @@
 # ZBiM SDK CHANGELOG
 
+## 1.3
+
+### New Features
+* Support for universal links and app-indexing.
+
 ## 1.2
 
 ### New Features

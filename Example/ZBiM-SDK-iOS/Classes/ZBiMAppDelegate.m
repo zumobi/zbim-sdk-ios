@@ -102,6 +102,33 @@ NSString * const HttpScheme = @"http";
 {
     UIViewController *currentViewController = [self getTopViewController];
     
+    if ([currentViewController isMemberOfClass:[ZBiMProductPageViewController class]])
+    {
+        //Dismiss current details page before new content is opened
+        [currentViewController dismissViewControllerAnimated:YES completion:^{
+            [self handleIncomingURL:url];
+        }];
+    }
+    else
+    {
+        [self handleIncomingURL:url];
+    }
+
+    return YES;
+}
+
+- (BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray *restorableObjects))restorationHandler
+{
+    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb])
+    {
+        [self handleIncomingURL:userActivity.webpageURL];
+    }
+    
+    return YES;
+}
+
+- (void)handleIncomingURL:(NSURL *)url
+{
     // Check to see if content provider is being configured
     // if so alert user that provider must be configured
     if ([self.viewController isMemberOfClass:[ZBiMContentProviderConfigViewController class]])
@@ -112,42 +139,13 @@ NSString * const HttpScheme = @"http";
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
         [alert show];
-        return NO;
-    }
-    else
-    {
-        if ([currentViewController isMemberOfClass:[ZBiMProductPageViewController class]])
-        {
-            //Dismiss current details page before new content is opened
-            [currentViewController dismissViewControllerAnimated:YES completion:^{
-                [self performCustomURLSchemeDetection:url];
-            }];
-        }
-        else
-        {
-            [self performCustomURLSchemeDetection:url];
-        }
-    }
-    return YES;
-}
 
-- (void)performCustomURLSchemeDetection:(NSURL *)url
-{
-    if ([[url scheme] isEqualToString:SampleAppScheme])
-    {
-        NSString* absoluteStringUrl = [[url absoluteString] stringByReplacingOccurrencesOfString:SampleAppScheme withString:ZBiMScheme];
-        id<ZBiMContentHubDelegate> contentHub = [ZBiM getCurrentContentHub];
-        if (contentHub)
-        {
-            [contentHub loadContentWithURI:absoluteStringUrl];
-        }
-        else
-        {
-            [ZBiM presentHubWithUri:absoluteStringUrl completion:nil];
-        }
-        
+        return;
     }
-    else if ([[url scheme] isEqualToString:DetailPageScheme])
+    
+    NSLog(@"Handling incoming URL: %@", url);
+    
+    if ([[url scheme] isEqualToString:DetailPageScheme])
     {
         ZBiMProductPageViewController *productPageViewController = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"ZBiMProductPageViewController"];
         
@@ -155,6 +153,31 @@ NSString * const HttpScheme = @"http";
         [productPageViewController setURL:[NSURL URLWithString:absoluteStringUrl]];
         
         [[self getTopViewController] presentViewController:productPageViewController animated:YES completion:nil];
+    }
+    else
+    {
+        NSString *contentHubURI = [url absoluteString];
+        if ([[url scheme] isEqualToString:SampleAppScheme])
+        {
+            NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+            components.scheme = ZBiMScheme;
+            contentHubURI = components.URL.absoluteString;
+        }
+        
+        id<ZBiMContentHubDelegate> contentHub = [ZBiM getCurrentContentHub];
+        if (contentHub)
+        {
+            [contentHub loadContentWithURI:contentHubURI];
+        }
+        else
+        {
+            [ZBiM presentHubWithUri:contentHubURI completion:^(BOOL success, NSError *error) {
+                if (!success)
+                {
+                    NSLog(@"Failed presenting Content Hub for URL: %@. Error: %@", contentHubURI, error);
+                }
+            }];
+        }
     }
 }
 

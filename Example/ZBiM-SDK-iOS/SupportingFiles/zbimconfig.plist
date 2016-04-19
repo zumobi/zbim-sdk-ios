@@ -5,7 +5,7 @@
 	<key>appID</key>
 	<string>4afdf695-b143-4ea0-8741-c3cb8d15e649</string>
 	<key>dbServiceUrl</key>
-	<string>https://zpe.zumobi.net/apps/4afdf695-b143-4ea0-8741-c3cb8d15e649/tagdemo-1/db_url</string>
+	<string>https://zpe.zumobi.net/apps/4afdf695-b143-4ea0-8741-c3cb8d15e649/1-3-0/db_url</string>
 	<key>metricsReportingQueueId</key>
 	<string>zumobi</string>
 	<key>poolId</key>

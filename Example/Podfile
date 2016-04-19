@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ZBiMSampleApp', :exclusive => true do
-  pod "ZBiM-SDK-iOS", :git => 'https://github.com/zumobi/zbim-sdk-ios.git', :tag => '1.2'
+  pod "ZBiM-SDK-iOS", :git => 'https://github.com/zumobi/zbim-sdk-ios.git', :tag => '1.3'
 end

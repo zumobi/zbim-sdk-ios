@@ -14,15 +14,16 @@ ZBiM SDK for iOS Documentation
 9. [Content Hub UI & Navigation Model](#ContentHUBNavigationModel)
 10. [Security](#Security)
 11. [Custom URL Schemes Support](#CustomURLSchemesSupport)
-12. [Configuration](#Configuration)
-13. [Customizations](#Customizations)
-14. [Reacting to ZBIM SDK State Changes](#ZBIMSDKStateChanges)
-15. [Facilitating an Adaptive Application UI](#AdaptiveApplicationUI)
-16. [Logging](#Logging)
-17. [Metrics](#Metrics)
-18. [Local Notifications](#LocalNotifications)
-19. [Support](#Support)
-20. [License](#License)
+12. [Deep Linking & App Indexing Support](#DeepLinkingSupport)
+13. [Configuration](#Configuration)
+14. [Customizations](#Customizations)
+15. [Reacting to ZBIM SDK State Changes](#ZBIMSDKStateChanges)
+16. [Facilitating an Adaptive Application UI](#AdaptiveApplicationUI)
+17. [Logging](#Logging)
+18. [Metrics](#Metrics)
+19. [Local Notifications](#LocalNotifications)
+20. [Support](#Support)
+21. [License](#License)
 
 <a id="Overview"/>
 ## Overview
@@ -483,13 +484,33 @@ If the previous method is too restrictive, then the application has the option t
 <a id="CustomURLSchemesSupport"/>
 ## Custom URL Schemes Support
 
-The security measures described in the previous section can impact ZBiM SDK's ability to support custom URL schemes. The SDK has the ability to pass URLs using a custom scheme to the host application for the purpose of performing actions not supported directly by the SDK itself.  For example, the Content Hub may display an item available for purchase, but only the application can perform the checkout action. If the user taps on the purchase button within the Content Hub, the ZBiM SDK will generate a custom URL request for the host application to handle the checkout functionality.
+Custom URL schemes can be used to deep link into content provided by the SDK (discussed in next section) or to allow the SDK to communicate with the host application for the purpose of performing actions not supported directly by the SDK itself. For example, the Content Hub might be showing an item available for purchase, but only the application can perform the checkout action. If the user taps on the purchase button within the Content Hub, the ZBiM SDK will generate a custom URL request for the host application to handle the checkout functionality.
 
 By default the ZBiM SDK will read all custom URL schemes (from the app-info.plist file) that the app has registered to handle and add them to a list of whitelisted URL schemes that are exempt from the security restrictions described in the previous section. The application can add more URL schemes that should be treated the same way by calling:
 
 ```objective-c
 + (void) registerCustomURLScheme:(NSString *)customURLScheme;
 ```
+
+<a id="DeepLinkingSupport"/>
+## Deep Linking and App Indexing Support
+
+Deep linking refers to the process of presenting a specific piece of content identified by a URI that the host application passes as a parameter to ZBiM SDK. The host application can get the URI from a variety of sources, e.g. receiving a local notification, being asked to handle an incoming URL, etc. The application must then check if there is an existing Content Hub and if so ask it to load the new URI. Otherwise it can pass the URI as a parameter to one of the presentHubWithUri: methods which will create and present a new Content Hub.
+
+For the above to work, the SDK must know how to handle the URI. In the case of local notifications that is not a problem, since the source of the notification is the SDK itself. When the application is asked to handle an incoming URL, e.g. in response to registering as a handler of a custom URL scheme, there are two things that are needed for the corresponding content to be presented successfully:
+
+1. The application must replace the custom URL scheme with zbimdb:// before passing the resulting URI along to the SDK.
+2. There must be a corresponding piece of content matching the resulting URI that the SDK can load, which is why these are typically Zumobi-provided URIs.
+
+Finally, there is the case of app-indexing, where search engines crawl content that is available inside an application and which can later be presented by ZBiM SDK inside the application in response to a user request, e.g. tapping on a given item in Google search results. In this context, the host application will be asked to open a regular URL, which it can then pass straight to the SDK without having to change the URL's scheme. The incoming URL must reflect the original source of the content, i.e. the one indexed by the search engine and ingested by the Zumobi's crawler.
+
+Any setup steps ensuring that the host application will be asked to handle a deep link are outside of ZBiM SDK's scope and must be handled by the application's developer. In this document we are going to provide pointers only to Google App Indexing specific tasks. Google's documentation on app indexing can be found here: https://developers.google.com/app-indexing/introduction. The following is a high-level summary:
+1. Add Google App Indexing SDK.
+2. Update application to initialize Google App Indexing SDK.
+3. Implement support for Apple Universal Links (https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html):
+  * Add apple-app-site-association file to the web site that hosts the content that is to be indexed.
+  * Add an entitlement to the host application, specifying the domains the application supports.
+  * Update the host application's AppDelegate, to respond appropriately to a NSUserActivity object.
 
 <a id="Configuration"/>
 ## Configuration

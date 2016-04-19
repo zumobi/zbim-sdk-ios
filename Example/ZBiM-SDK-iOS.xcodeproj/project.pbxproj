@@ -23,9 +23,6 @@
 		33FC112C1C597CF000E7A39B /* ZBiMUserManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FC11191C597CF000E7A39B /* ZBiMUserManagementViewController.m */; };
 		33FC11301C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33FC112F1C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf */; };
 		33FC11351C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FC11321C5981BF00E7A39B /* ZBiMUserManagementTableViewCell.xib */; };
-		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
-		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		7E08422C30DA2B30795273E6 /* libPods-ZBiMSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE8D012A097199B6A4E593 /* libPods-ZBiMSampleApp.a */; };
 		B7AE85941A82A35B00F02F23 /* ZBiMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE85781A82A35B00F02F23 /* ZBiMAppDelegate.m */; };
 		B7AE85951A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AE857A1A82A35B00F02F23 /* ZBiMContentHubContainerViewController.m */; };
@@ -38,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3308576D1C9B701F00ED8716 /* ZBiMSampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = ZBiMSampleApp.entitlements; path = ../../ZBiMSampleApp.entitlements; sourceTree = "<group>"; };
 		33FC10F91C597C2600E7A39B /* ZBiMStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZBiMStoryboard.storyboard; sourceTree = "<group>"; };
 		33FC10FB1C597CAF00E7A39B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		33FC10FD1C597CF000E7A39B /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
@@ -96,9 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
-				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
-				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				7E08422C30DA2B30795273E6 /* libPods-ZBiMSampleApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +215,7 @@
 		B7AE85A61A82ABF200F02F23 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				3308576D1C9B701F00ED8716 /* ZBiMSampleApp.entitlements */,
 				33FC112F1C59809C00E7A39B /* HVD Fonts - BrandonGrotesque-Medium.otf */,
 				B7AE85BD1A82DA8400F02F23 /* zbimconfig.plist */,
 				B7AE85A91A82ABF200F02F23 /* pubkey.der */,
@@ -264,6 +260,9 @@
 						DevelopmentTeam = RJQEDJVABA;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -425,7 +424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -471,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ZBiMSampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
@@ -489,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ZBiMSampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZBiM-SDK-iOS/ZBiMSampleApp-Prefix.pch";
